@@ -84,12 +84,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Keep moving!!!">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="#详解 @property
+简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解 property">
+<meta property="og:url" content="http://yoursite.com/2016/08/28/property/index.html">
 <meta property="og:site_name" content="Keep moving!!!">
+<meta property="og:description" content="#详解 @property
+简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添">
+<meta property="og:image" content="http://yoursite.com/images/Curry.jpg">
+<meta property="og:updated_time" content="2016-08-27T21:08:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Keep moving!!!">
+<meta name="twitter:title" content="详解 property">
+<meta name="twitter:description" content="#详解 @property
+简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添">
+<meta name="twitter:image" content="http://yoursite.com/images/Curry.jpg">
 
 
 
@@ -110,7 +119,7 @@
 
 
 
-  <title> Keep moving!!! </title>
+  <title> 详解 property | Keep moving!!! </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,9 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -242,10 +249,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/08/28/property/" itemprop="url">
-                  详解 property
-                </a>
+                详解 property
               
             
           </h1>
@@ -285,9 +289,7 @@
       
 
       
-        
-          
-            <p>#详解 @property</p>
+        <p>#详解 @property</p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。</p>
 <ul>
 <li>手动编写成员变量／存取方法</li>
@@ -352,16 +354,20 @@
 </ol>
 <p><img src="images/Curry.jpg" alt="Curry"></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -372,16 +378,15 @@
 
       
       
-        <div class="post-eof"></div>
-      
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -389,6 +394,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -408,8 +417,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/IMG_0036.jpg"
@@ -465,6 +483,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#property-之后的关键字"><span class="nav-number">2.</span> <span class="nav-text">@property 之后的关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己申明成员变量"><span class="nav-number">3.</span> <span class="nav-text">自己申明成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -561,6 +590,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
