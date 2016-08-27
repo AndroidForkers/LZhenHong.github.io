@@ -243,6 +243,106 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/28/Swift-init/" itemprop="url">
+                  Swift init
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T05:16:18+08:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>#翻译篇 － Swift init()<br><a href="http://merowing.info/2015/11/swift-init/">原文链接</a><br><em>PS：翻译水平有限，推荐看原文</em></p>
+<hr>
+<p><a href="http://merowing.info/2015/11/Initializers.playground.zip">下载 Playgroung 文件</a></p>
+<p>因为 <code>Swift</code> 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。</p>
+<p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/28/Swift-init/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/28/property/" itemprop="url">
                   详解 property
                 </a>
@@ -286,73 +386,13 @@
 
       
         
-          
-            <p>#详解 @property</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。</p>
-<ul>
-<li>手动编写成员变量／存取方法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">@interface XYDog: NSObject &#123;</div><div class="line">    NSString *_name;</div><div class="line">&#125;</div><div class="line">- (void)setName:(NSString *)name;</div><div class="line">- (NSString *)name;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation XYDog</div><div class="line">- (void)setName:(NSString *)name &#123;</div><div class="line">    _name = [name copy];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSString *)name &#123;</div><div class="line">    return _name;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<ul>
-<li>Xcode 自动生成</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@interface XYDog: NSObject</div><div class="line">@property (nonatomic, copy) NSString *name;</div><div class="line">@end</div><div class="line">@implementation XYDog</div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>仅通过 @property，Xcode 就自动生成手动编写的代码，这大大提高了开发效率</p>
-<h3 id="property-之后的关键字"><a href="#property-之后的关键字" class="headerlink" title="@property 之后的关键字"></a>@property 之后的关键字</h3><ul>
-<li><p>原子性：默认情况下，编译器合成的方法会通过锁定机制保证原子性</p>
-<ul>
-<li>atomic：加锁，使用同步锁的开销较大，iOS 开发一般情况下不会用此关键字，Mac OS X 开发使用该关键字不会有性能瓶颈</li>
-<li>nonatomic：不加锁</li>
-</ul>
-</li>
-<li><p>读/写权限：</p>
-<ul>
-<li>readwrite：同时具有 “getter” 和 “setter”</li>
-<li>readonly：只有 “getter”</li>
-</ul>
-</li>
-<li><p>内存管理：</p>
-<ul>
-<li>assign：只针对 “储量类型” 的简单赋值操作 (int\double\CGFloat\CGRect)</li>
-<li>strong：为这种属性设置新值时，setter 会 retain 新值，release 旧值，再将新值设置给实例变量</li>
-<li>weak：为这种属性设置新值时，setter 不会 retain 新值，也不会 release 旧值，当引用的对象被释放时，该属性会被自动设为 nil</li>
-<li>unsafe_unretained：与 assign 相同，适用于对象类型，不会 retain 引用的对象，引用的对象被销毁后，不会被自动设为 nil</li>
-<li>copy：为这种属性设置新值时，不会 retain 新值，而会将其拷贝一份，在设置给实例变量。当属性类型为 NSString* 时，经常用这个关键字</li>
-</ul>
-</li>
-<li><p>方法名：</p>
-<ul>
-<li>getter=<name> 指定获取方法名，<code>@property (nonatomic, assgin, getter=isOn) BOOL on;</code></name></li>
-<li>setter=<name> 指定设置方法名</name></li>
-</ul>
-</li>
-</ul>
-<h3 id="自己申明成员变量"><a href="#自己申明成员变量" class="headerlink" title="自己申明成员变量"></a>自己申明成员变量</h3><p>这是不是意味我们就不需要再关心成员变量的创建了？并不是。Xcode 在某些情况下，不会生成成员变量：</p>
-<ol>
-<li>重写了 readonly 属性的 getter</li>
-<li>重写了 readwrite 属性的 setter 和 getter</li>
-<li>在 .m 文件中用 @dynamic 标记的属性<br>在这些情况下，Xcode 会认为我们自己要管理成员变量，所以就不会合成成员变量</li>
-</ol>
-<p>在这几种情况下，假如我们需要成员变量的话，就得自己申明成员变量，这里有两种方法：</p>
-<ul>
-<li>第一种</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@interface XYDog: NSObject</div><div class="line">@property (nonatomic, readonly) NSString *name;</div><div class="line">@end</div><div class="line">@implementation XYDog &#123;</div><div class="line">    NSString *_name;</div><div class="line">&#125;</div><div class="line">- (NSString *)name &#123;</div><div class="line">    return @&quot;Tom&quot;;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<ul>
-<li>第二种</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@interface XYDog: NSObject</div><div class="line">@property (nonatomic, readonly) NSString *name;</div><div class="line">@end</div><div class="line">@implementation XYDog</div><div class="line">@synthesize name;</div><div class="line">- (NSString *)name &#123;</div><div class="line">    return @&quot;Tom&quot;;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>这种方法还是告诉 Xcode 帮我们合成成员变量</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>我们访问成员变量的通常用的是形如 <code>dog.name</code> 的点语法，这不是 Objective-C 语言的特性，而是 Xcode 特性，Xcode 会把这样的语法翻译成调用 setter 或者 getter，因此我们能获得或者设置成员变量的值<br>直接访问成员变量的语法是 <code>dog-&gt;name</code>，Objective-C 对象本质上是 C 语言的结构体，所有这里就是访问结构体的成员变量</p>
-<p>我们在 .m 文件中重写 setter 和 getter 方法时，有几点需要注意</p>
-<ol>
-<li>不要在 getter 中使用形如 <code>self.name</code> 的语句来访问成员变量，Xcode 会将这个翻译成 getter 方法的调用，这里就会造成死循环</li>
-<li>同样不要在 setter 中使用形如 <code>self.name = @&quot;Jerry&quot;;</code> 的语句来设置成员变量的值，原因同上</li>
-<li>我们应该使用 <code>_name</code> 或者 <code>_name = @&quot;xxx;&quot;</code> 来访问和设置成员变量的值</li>
-</ol>
-<p><img src="http://oatw5vnlr.bkt.clouddn.com/Curry.jpg" alt="Curry"></p>
-
-          
+          <p>#详解 @property</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/28/property/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -420,7 +460,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
