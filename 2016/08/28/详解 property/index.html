@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="#详解 @property
-简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添">
+<meta name="description" content="简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变">
 <meta property="og:type" content="article">
 <meta property="og:title" content="详解 property">
-<meta property="og:url" content="http://yoursite.com/2016/08/28/property/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/08/28/详解 property/index.html">
 <meta property="og:site_name" content="Keep moving!!!">
-<meta property="og:description" content="#详解 @property
-简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添">
-<meta property="og:updated_time" content="2016-08-27T21:14:51.000Z">
+<meta property="og:description" content="简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变">
+<meta property="og:updated_time" content="2016-08-27T21:33:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解 property">
-<meta name="twitter:description" content="#详解 @property
-简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添">
+<meta name="twitter:description" content="简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变">
 
 
 
@@ -287,18 +284,17 @@
       
 
       
-        <p>#详解 @property</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。<br><a id="more"></a></p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。<br><a id="more"></a></p>
 <ul>
 <li>手动编写成员变量／存取方法</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">@interface XYDog: NSObject &#123;</div><div class="line">    NSString *_name;</div><div class="line">&#125;</div><div class="line">- (void)setName:(NSString *)name;</div><div class="line">- (NSString *)name;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation XYDog</div><div class="line">- (void)setName:(NSString *)name &#123;</div><div class="line">    _name = [name copy];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSString *)name &#123;</div><div class="line">    return _name;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XYDog</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    <span class="built_in">NSString</span> *_name;</div><div class="line">&#125;</div><div class="line">- (<span class="keyword">void</span>)setName:(<span class="built_in">NSString</span> *)name;</div><div class="line">- (<span class="built_in">NSString</span> *)name;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">XYDog</span></span></div><div class="line">- (<span class="keyword">void</span>)setName:(<span class="built_in">NSString</span> *)name &#123;</div><div class="line">    _name = [name <span class="keyword">copy</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)name &#123;</div><div class="line">    <span class="keyword">return</span> _name;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
 <ul>
 <li>Xcode 自动生成</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@interface XYDog: NSObject</div><div class="line">@property (nonatomic, copy) NSString *name;</div><div class="line">@end</div><div class="line">@implementation XYDog</div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XYDog</span>: <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">XYDog</span></span></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
 <p>仅通过 @property，Xcode 就自动生成手动编写的代码，这大大提高了开发效率</p>
-<h3 id="property-之后的关键字"><a href="#property-之后的关键字" class="headerlink" title="@property 之后的关键字"></a>@property 之后的关键字</h3><ul>
+<h2 id="property-之后的关键字"><a href="#property-之后的关键字" class="headerlink" title="@property 之后的关键字"></a>@property 之后的关键字</h2><ul>
 <li><p>原子性：默认情况下，编译器合成的方法会通过锁定机制保证原子性</p>
 <ul>
 <li>atomic：加锁，使用同步锁的开销较大，iOS 开发一般情况下不会用此关键字，Mac OS X 开发使用该关键字不会有性能瓶颈</li>
@@ -327,7 +323,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="自己申明成员变量"><a href="#自己申明成员变量" class="headerlink" title="自己申明成员变量"></a>自己申明成员变量</h3><p>这是不是意味我们就不需要再关心成员变量的创建了？并不是。Xcode 在某些情况下，不会生成成员变量：</p>
+<h2 id="自己申明成员变量"><a href="#自己申明成员变量" class="headerlink" title="自己申明成员变量"></a>自己申明成员变量</h2><p>这是不是意味我们就不需要再关心成员变量的创建了？并不是。Xcode 在某些情况下，不会生成成员变量：</p>
 <ol>
 <li>重写了 readonly 属性的 getter</li>
 <li>重写了 readwrite 属性的 setter 和 getter</li>
@@ -337,13 +333,13 @@
 <ul>
 <li>第一种</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@interface XYDog: NSObject</div><div class="line">@property (nonatomic, readonly) NSString *name;</div><div class="line">@end</div><div class="line">@implementation XYDog &#123;</div><div class="line">    NSString *_name;</div><div class="line">&#125;</div><div class="line">- (NSString *)name &#123;</div><div class="line">    return @&quot;Tom&quot;;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XYDog</span>: <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">XYDog</span> </span>&#123;</div><div class="line">    <span class="built_in">NSString</span> *_name;</div><div class="line">&#125;</div><div class="line">- (<span class="built_in">NSString</span> *)name &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">@"Tom"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
 <ul>
 <li>第二种</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@interface XYDog: NSObject</div><div class="line">@property (nonatomic, readonly) NSString *name;</div><div class="line">@end</div><div class="line">@implementation XYDog</div><div class="line">@synthesize name;</div><div class="line">- (NSString *)name &#123;</div><div class="line">    return @&quot;Tom&quot;;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">XYDog</span>: <span class="title">NSObject</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>) <span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">XYDog</span></span></div><div class="line"><span class="keyword">@synthesize</span> name;</div><div class="line">- (<span class="built_in">NSString</span> *)name &#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">@"Tom"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
 <p>这种方法还是告诉 Xcode 帮我们合成成员变量</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>我们访问成员变量的通常用的是形如 <code>dog.name</code> 的点语法，这不是 Objective-C 语言的特性，而是 Xcode 特性，Xcode 会把这样的语法翻译成调用 setter 或者 getter，因此我们能获得或者设置成员变量的值<br>直接访问成员变量的语法是 <code>dog-&gt;name</code>，Objective-C 对象本质上是 C 语言的结构体，所有这里就是访问结构体的成员变量</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>我们访问成员变量的通常用的是形如 <code>dog.name</code> 的点语法，这不是 Objective-C 语言的特性，而是 Xcode 特性，Xcode 会把这样的语法翻译成调用 setter 或者 getter，因此我们能获得或者设置成员变量的值<br>直接访问成员变量的语法是 <code>dog-&gt;name</code>，Objective-C 对象本质上是 C 语言的结构体，所有这里就是访问结构体的成员变量</p>
 <p>我们在 .m 文件中重写 setter 和 getter 方法时，有几点需要注意</p>
 <ol>
 <li>不要在 getter 中使用形如 <code>self.name</code> 的语句来访问成员变量，Xcode 会将这个翻译成 getter 方法的调用，这里就会造成死循环</li>
@@ -379,8 +375,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/28/Swift-init/" rel="prev" title="Swift init">
-                Swift init <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/28/翻译篇 － Swift init()/" rel="prev" title="翻译篇 － Swift init()">
+                翻译篇 － Swift init() <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -501,7 +497,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#property-之后的关键字"><span class="nav-number">2.</span> <span class="nav-text">@property 之后的关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己申明成员变量"><span class="nav-number">3.</span> <span class="nav-text">自己申明成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#property-之后的关键字"><span class="nav-number">2.</span> <span class="nav-text">@property 之后的关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自己申明成员变量"><span class="nav-number">3.</span> <span class="nav-text">自己申明成员变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
             
           </div>
         </section>
