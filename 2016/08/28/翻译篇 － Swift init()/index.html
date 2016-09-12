@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift," />
 
 
 
@@ -86,27 +86,24 @@
 
 <meta name="description" content="原文链接PS：翻译水平有限，推荐看原文
 
-下载 Playgroung 文件
-简介因为 Swift 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。
-我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。">
+
+下载 Playgroung 文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="翻译篇 － Swift init()">
 <meta property="og:url" content="http://yoursite.com/2016/08/28/翻译篇 － Swift init()/index.html">
-<meta property="og:site_name" content="Keep moving!!!">
+<meta property="og:site_name" content="lzh's blog">
 <meta property="og:description" content="原文链接PS：翻译水平有限，推荐看原文
 
-下载 Playgroung 文件
-简介因为 Swift 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。
-我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。">
+
+下载 Playgroung 文件">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/initializers.png">
-<meta property="og:updated_time" content="2016-08-27T21:48:32.000Z">
+<meta property="og:updated_time" content="2016-09-12T15:49:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="翻译篇 － Swift init()">
 <meta name="twitter:description" content="原文链接PS：翻译水平有限，推荐看原文
 
-下载 Playgroung 文件
-简介因为 Swift 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。
-我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。">
+
+下载 Playgroung 文件">
 <meta name="twitter:image" content="http://oatw5vnlr.bkt.clouddn.com/initializers.png">
 
 
@@ -115,7 +112,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"hide"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -128,7 +125,7 @@
 
 
 
-  <title> 翻译篇 － Swift init() | Keep moving!!! </title>
+  <title> 翻译篇 － Swift init() | lzh's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -159,7 +156,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Keep moving!!!</span>
+      <span class="site-title">lzh's blog</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -207,16 +204,6 @@
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
           </a>
         </li>
       
@@ -298,11 +285,14 @@
       
 
       
-        <p><a href="http://merowing.info/2015/11/swift-init/" target="_blank" rel="external">原文链接</a><br><em>PS：翻译水平有限，推荐看原文</em></p>
+        <blockquote>
+<p><a href="http://merowing.info/2015/11/swift-init/" target="_blank" rel="external">原文链接</a><br><em>PS：翻译水平有限，推荐看原文</em></p>
+</blockquote>
 <hr>
-<p><a href="http://merowing.info/2015/11/Initializers.playground.zip" target="_blank" rel="external">下载 Playgroung 文件</a></p>
+<p><a href="http://merowing.info/2015/11/Initializers.playground.zip" target="_blank" rel="external">下载 Playgroung 文件</a><br><a id="more"></a></p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>因为 <code>Swift</code> 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。</p>
-<p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。<br><a id="more"></a><br>让我们假定你有一个这样的类：</p>
+<p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。</p>
+<p>让我们假定你有一个这样的类：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</div><div class="line">  <span class="keyword">let</span> coreDataStack: <span class="type">CoreDataStack</span></div><div class="line">  <span class="keyword">let</span> mfpService = <span class="type">MFPService</span>()</div><div class="line">  <span class="keyword">let</span> integrator: <span class="type">IntegrationService</span></div><div class="line">  <span class="keyword">let</span> flowController: <span class="type">FlowController</span></div><div class="line">  <span class="keyword">let</span> window: <span class="type">UIWindow</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这样的类需要许多行来初始化所有的属性，所以我们会将初始化逻辑分成多个函数，可能像这样：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">init</span>(coreDataStack stack: <span class="type">CoreDataStack</span>) &#123;</div><div class="line">  coreDataStack = stack</div><div class="line">  integrator = setupIntegrator(stack, provider: mfpService)</div><div class="line">  flowController = setupFlowController(stack)</div><div class="line">  window = setupWindow(flowController.rootViewController)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -310,17 +300,17 @@
 <p>这样显得不那么 Cool. :]</p>
 <p>我在 Twitter 上跟一些能干的人交流，寻找一些选择，下面是我觉得挺好的。</p>
 <p>让我们来看一下这些选择</p>
-<h2 id="Option-1-implicitly-unwraped-optional-var"><a href="#Option-1-implicitly-unwraped-optional-var" class="headerlink" title="Option 1 - implicitly unwraped optional var!"></a>Option 1 - implicitly unwraped optional var!</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> integrator: <span class="type">IntegrationService</span>!</div></pre></td></tr></table></figure>
+<h2 id="选择-1-对可选变量隐式解包"><a href="#选择-1-对可选变量隐式解包" class="headerlink" title="选择 1 - 对可选变量隐式解包"></a>选择 1 - 对可选变量隐式解包</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> integrator: <span class="type">IntegrationService</span>!</div></pre></td></tr></table></figure>
 <p>这个选择经常会出错，我们选择 <code>Swift</code> 是因为它能写出更安全的代码。</p>
 <p>请不要这样写。</p>
-<h2 id="Option-2-lazy-var’s-with-side-effects"><a href="#Option-2-lazy-var’s-with-side-effects" class="headerlink" title="Option 2 - lazy var’s with side-effects"></a>Option 2 - lazy var’s with side-effects</h2><p>我们用隐藏的懒加载属性，但是可能会有副作用</p>
+<h2 id="选择-2-有副作用的懒加载"><a href="#选择-2-有副作用的懒加载" class="headerlink" title="选择 2 - 有副作用的懒加载"></a>选择 2 - 有副作用的懒加载</h2><p>我们用隐藏的懒加载属性，但是可能会有副作用</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo_lazy</span> </span>&#123;</div><div class="line">  <span class="keyword">let</span> coreDataStack: <span class="type">CoreDataStack</span></div><div class="line">  <span class="keyword">let</span> mfpService = <span class="type">MFPService</span>()</div><div class="line">  </div><div class="line">  <span class="keyword">init</span>(coreDataStack stack: <span class="type">CoreDataStack</span>) &#123;</div><div class="line">    coreDataStack = stack</div><div class="line">    <span class="keyword">let</span> <span class="number">_</span> = integrator</div><div class="line">    <span class="keyword">let</span> <span class="number">_</span> = rootFlowController</div><div class="line">    <span class="keyword">let</span> <span class="number">_</span> = window</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="built_in">lazy</span> <span class="keyword">var</span> rootFlowController: <span class="type">FlowController</span> = &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">FlowController</span>(coreDataStack: <span class="keyword">self</span>.coreDataStack)</div><div class="line">  &#125;()</div><div class="line">  </div><div class="line">  <span class="built_in">lazy</span> <span class="keyword">var</span> window: <span class="type">UIWindow</span> = &#123;</div><div class="line">    <span class="keyword">let</span> window = <span class="type">UIWindow</span>(frame: <span class="type">UIScreen</span>.mainScreen().bounds)</div><div class="line">    window.backgroundColor = <span class="type">UIColor</span>.whiteColor()</div><div class="line">    window.rootViewController = <span class="keyword">self</span>.rootFlowController.rootViewController</div><div class="line">    window.makeKeyAndVisible()</div><div class="line">    <span class="keyword">return</span> window</div><div class="line">  &#125;()</div><div class="line">  </div><div class="line">  </div><div class="line">  <span class="built_in">lazy</span> <span class="keyword">var</span> integrator: <span class="type">IntegrationService</span> = &#123;</div><div class="line">    <span class="keyword">let</span> coreDataProcessor = <span class="type">CoreDataReportProcessor</span>(stack: <span class="keyword">self</span>.coreDataStack)</div><div class="line">    <span class="keyword">let</span> integrator = <span class="type">IntegrationService</span>(provider: <span class="keyword">self</span>.mfpService) &#123;</div><div class="line">      coreDataProcessor.processReports($<span class="number">0</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> integrator</div><div class="line">  &#125;()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这个解决方法允许我们将代码分开，并且也运行得很好，但是这样也不是那么好，因为</p>
 <ul>
 <li>属性不是真正的不可变，我们可以将其定义成隐私，如此不能在外面更改它们，但是他们仍然是可变的。</li>
 <li>我不喜欢像这样会触发副作用的代码，这样看起来很不整洁。</li>
 </ul>
-<h2 id="Option-3-private-static-functions"><a href="#Option-3-private-static-functions" class="headerlink" title="Option 3 - private static functions"></a>Option 3 - private static functions</h2><p>我们可以定义隐私的静态方法，用它们来初始化属性(并且可以将它们放在隐私的类扩展中)：</p>
+<h2 id="选择-3-隐私的静态方法"><a href="#选择-3-隐私的静态方法" class="headerlink" title="选择 3 - 隐私的静态方法"></a>选择 3 - 隐私的静态方法</h2><p>我们可以定义隐私的静态方法，用它们来初始化属性(并且可以将它们放在隐私的类扩展中)：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo_ext</span> </span>&#123;</div><div class="line">  <span class="keyword">let</span> coreDataStack: <span class="type">CoreDataStack</span></div><div class="line">  <span class="keyword">let</span> mfpService = <span class="type">MFPService</span>()</div><div class="line">  <span class="keyword">let</span> integrator: <span class="type">IntegrationService</span></div><div class="line">  <span class="keyword">let</span> flowController: <span class="type">FlowController</span></div><div class="line">  <span class="keyword">let</span> window: <span class="type">UIWindow</span></div><div class="line">  </div><div class="line">  <span class="keyword">init</span>(coreDataStack stack: <span class="type">CoreDataStack</span>) &#123;</div><div class="line">    coreDataStack = stack</div><div class="line">    integrator = <span class="type">Foo_ext</span>.<span class="type">SetupIntegrator</span>(stack, provider: <span class="keyword">self</span>.mfpService)</div><div class="line">    flowController = <span class="type">Foo_ext</span>.<span class="type">SetupFlowController</span>(stack)</div><div class="line">    window = <span class="type">Foo_ext</span>.<span class="type">SetupWindow</span>(<span class="keyword">self</span>.flowController.rootViewController)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">extension</span> <span class="title">Foo_ext</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">SetupIntegrator</span><span class="params">(stack: CoreDataStack, provider: Provider)</span></span> -&gt; <span class="type">IntegrationService</span> &#123;</div><div class="line">    <span class="keyword">let</span> coreDataProcessor = <span class="type">CoreDataReportProcessor</span>(stack: stack)</div><div class="line">    <span class="keyword">let</span> integrator = <span class="type">IntegrationService</span>(provider: provider) &#123;</div><div class="line">      coreDataProcessor.processReports($<span class="number">0</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> integrator</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">SetupFlowController</span><span class="params">(stack: CoreDataStack)</span></span> -&gt; <span class="type">FlowController</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">FlowController</span>(coreDataStack: stack)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">SetupWindow</span><span class="params">(controller: UIViewController)</span></span> -&gt; <span class="type">UIWindow</span> &#123;</div><div class="line">    <span class="keyword">let</span> window = <span class="type">UIWindow</span>(frame: <span class="type">UIScreen</span>.mainScreen().bounds)</div><div class="line">    window.backgroundColor = <span class="type">UIColor</span>.whiteColor()</div><div class="line">    window.rootViewController = controller</div><div class="line">    window.makeKeyAndVisible()</div><div class="line">    <span class="keyword">return</span> window</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这是我现在最喜欢的方式：</p>
 <ul>
@@ -354,6 +344,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
@@ -366,6 +362,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/31/关于 UITableView 的滑动优化问题/" rel="prev" title="关于 UITableView 的滑动优化问题">
+                关于 UITableView 的滑动优化问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -433,13 +433,20 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
@@ -485,7 +492,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Option-1-implicitly-unwraped-optional-var"><span class="nav-number">2.</span> <span class="nav-text">Option 1 - implicitly unwraped optional var!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Option-2-lazy-var’s-with-side-effects"><span class="nav-number">3.</span> <span class="nav-text">Option 2 - lazy var’s with side-effects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Option-3-private-static-functions"><span class="nav-number">4.</span> <span class="nav-text">Option 3 - private static functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择-1-对可选变量隐式解包"><span class="nav-number">2.</span> <span class="nav-text">选择 1 - 对可选变量隐式解包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择-2-有副作用的懒加载"><span class="nav-number">3.</span> <span class="nav-text">选择 2 - 有副作用的懒加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择-3-隐私的静态方法"><span class="nav-number">4.</span> <span class="nav-text">选择 3 - 隐私的静态方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
