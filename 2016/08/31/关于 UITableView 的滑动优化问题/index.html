@@ -84,16 +84,37 @@
 
 
 
-<meta name="description" content="UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView">
+<meta name="description" content="引用
+
+Using Auto Layout in UITableView for dynamic cell layouts &amp;amp; variable row heights
+Glassy Scrolling with UITableView
+How can I speed up a UITableView?
+
+
+UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于 UITableView 的滑动优化问题">
 <meta property="og:url" content="http://yoursite.com/2016/08/31/关于 UITableView 的滑动优化问题/index.html">
 <meta property="og:site_name" content="lzh's blog">
-<meta property="og:description" content="UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView">
-<meta property="og:updated_time" content="2016-09-12T15:51:29.000Z">
+<meta property="og:description" content="引用
+
+Using Auto Layout in UITableView for dynamic cell layouts &amp;amp; variable row heights
+Glassy Scrolling with UITableView
+How can I speed up a UITableView?
+
+
+UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的">
+<meta property="og:updated_time" content="2016-09-21T05:31:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于 UITableView 的滑动优化问题">
-<meta name="twitter:description" content="UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView">
+<meta name="twitter:description" content="引用
+
+Using Auto Layout in UITableView for dynamic cell layouts &amp;amp; variable row heights
+Glassy Scrolling with UITableView
+How can I speed up a UITableView?
+
+
+UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的">
 
 
 
@@ -274,7 +295,14 @@
       
 
       
-        <p>UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView 的标准使用方式就能满足要求。像 Twitter / Weibo 这样的数据模型很复杂，数量也很多的情况下，我们就需要通过各种手段来优化 UITableView 的滚动流畅度。</p>
+        <h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><blockquote>
+<ul>
+<li><a href="http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights/18746930#18746930" target="_blank" rel="external">Using Auto Layout in UITableView for dynamic cell layouts &amp; variable row heights</a></li>
+<li><a href="http://www.fieryrobot.com/blog/2008/10/01/glassy-scrolling-with-uitableview/" target="_blank" rel="external">Glassy Scrolling with UITableView</a></li>
+<li><a href="http://stackoverflow.com/questions/6172158/how-can-i-speed-up-a-uitableview" target="_blank" rel="external">How can I speed up a UITableView?</a></li>
+</ul>
+</blockquote>
+<p>UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView 的标准使用方式就能满足要求。像 Twitter / Weibo 这样的数据模型很复杂，数量也很多的情况下，我们就需要通过各种手段来优化 UITableView 的滚动流畅度。</p>
 <a id="more"></a>
 <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>发现 UITableView 滑动不流畅之后，我们首先考虑的就是，给 UITableViewCell 的 <code>estimatedRowHeight</code> 属性设置值，或者实现 <code>-tableView:estimatedHeightForRowAtIndexPath:</code> 代理方法。</p>
 <p>UITableView 在第一次显示的时候，会调用  <code>-tableView:heightForRowAtIndexPath:</code> 代理方法来获取所有 cell 的高度，以此确定 UITableView 的 <code>contentSize</code>。当我们的 cell 非常多，cell 的布局又非常复杂，计算高度需要耗费很多时间，此时 UITableView 的显示就会卡顿，我们给 UITableView 添加预设高度，UITableView 会利用这个预设高度来计算 UITableView 的 <code>contentSize</code>，而不是调用 <code>-tableView:heightForRowAtIndexPath:</code>，只有在 cell 要出现的时候才会去调用 <code>-tableView:heightForRowAtIndexPath:</code> 来获取真正的高度。</p>
@@ -304,17 +332,10 @@
 </ul>
 <p>抱歉说了这么多废话 😅😅</p>
 <p>我们经常需要自定义 UITableViewCell 的子类，UITableViewCell 的布局有时会很复杂，因为要适配多种屏幕，所以，利用 Autolayout 无疑是挺好的选择，尤其是利用 Xib 和 SB 编写 UI 的时候。但是，当你的布局非常复杂同样会影响 UITableView 的滚动流畅度，因为系统需要花大量的时间去计算 UI 界面的布局，更具体的原因可以看<strong><a href="http://draveness.me/layout-performance/" target="_blank" rel="external">这里</a></strong>。当你想要将 UITableView 优化到极致，不妨可以考虑一下替换 AutoLayout。</p>
-<p><strong>Layer Opaque</strong><br>尽量将 CALayer 的这个属性设为 YES，这样系统就不会渲染在这个 view 之后的 view，也不会将 view 与其混合。可以设置 UIView 的 <code>backgroundColor</code> 属性，这个会跟系统自带的 highlight 冲突，因为系统自带的 highlight 依赖于透明度。当 cell 不可点击的时候，这样非常有用。</p>
+<p><strong>Layer Opaque</strong><br>尽量将 CALayer 的这个属性设为 YES，这样系统就不会渲染在这个 view 之后的 view，也不会将 view 与其混合。可以设置 cell 的 <code>backgroundColor</code> 属性，这个会跟系统自带的 highlight 冲突，因为系统自带的 highlight 依赖于透明度。当 cell 不可点击的时候，这样非常有用。</p>
 <p><strong>Row Height Cache</strong><br>当 UITableViewCell 子类的布局非常复杂，计算高度就会很耗时，我们在计算过一次之后，就可以将高度数据缓存起来，等到再次需要的时候就直接从缓存中获取，而不需要再耗费时间去计算。再次推荐 <strong><a href="https://github.com/forkingdog/UITableView-FDTemplateLayoutCell" target="_blank" rel="external">UITableView+FDTemplateLayoutCell</a></strong>。</p>
 <hr>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>这篇断断续续写了好几天，废话很多，主要记录自己的心得。非常感谢您能看到这。😘😘<br>不出意外的话，还会有一篇来记录 UITableView 的优化。</p>
-<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><blockquote>
-<ul>
-<li><a href="http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights/18746930#18746930" target="_blank" rel="external">Using Auto Layout in UITableView for dynamic cell layouts &amp; variable row heights</a></li>
-<li><a href="http://www.fieryrobot.com/blog/2008/10/01/glassy-scrolling-with-uitableview/" target="_blank" rel="external">Glassy Scrolling with UITableView</a></li>
-<li><a href="http://stackoverflow.com/questions/6172158/how-can-i-speed-up-a-uitableview" target="_blank" rel="external">How can I speed up a UITableView?</a></li>
-</ul>
-</blockquote>
 
       
     </div>
@@ -424,7 +445,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -483,7 +504,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步"><span class="nav-number">1.</span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步"><span class="nav-number">2.</span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步"><span class="nav-number">3.</span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步"><span class="nav-number">4.</span> <span class="nav-text">第四步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number">4.1.</span> <span class="nav-text">最后</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引用"><span class="nav-number">4.1.1.</span> <span class="nav-text">引用</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#引用"><span class="nav-number">1.</span> <span class="nav-text">引用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步"><span class="nav-number"></span> <span class="nav-text">第一步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步"><span class="nav-number"></span> <span class="nav-text">第二步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步"><span class="nav-number"></span> <span class="nav-text">第三步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四步"><span class="nav-number"></span> <span class="nav-text">第四步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最后"><span class="nav-number"></span> <span class="nav-text">最后</span></a></div>
             
           </div>
         </section>

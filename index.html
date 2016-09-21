@@ -233,6 +233,102 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/19/GCD-使用笔记/" itemprop="url">
+                  GCD 使用笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T10:05:43+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>关于 GCD，网上的资料随便一搜就是一大把，写这篇文章主要是记录自己对于 GCD 的理解。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/19/GCD-使用笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/08/enumerateObjectsUsingBlock/" itemprop="url">
                   关于 enumerateObjectsUsingBlock 的小知识点
                 </a>
@@ -276,10 +372,14 @@
 
       
         
-          <blockquote>
-<p><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">What is the BOOL *stop argument for enumerateObjectsUsingBlock: used for?</a></p>
+          <h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><blockquote>
+<ul>
+<li><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">What is the BOOL *stop argument for enumerateObjectsUsingBlock: used for?</a></li>
+<li><a href="http://blog.sunnyxx.com/2014/04/30/ios_iterator/">iOS 中集合遍历方法的比较和技巧</a></li>
+</ul>
 </blockquote>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 StackOverflow 上看到上面这篇讨论的时候，让我发现了自己的盲区，所以写下这篇文章记录一下。<br>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 StackOverflow 上看到<strong><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">这篇讨论</a></strong>的时候，让我发现了自己的盲区，所以写下这篇文章记录一下。</p>
+<p>有一次在项目中使用的 <code>enumerateObjectsUsingBlock</code> 遍历数组的时候，使用了 return，当时没有多想，在 code review 的时候被同事指出，当时觉得不妥就改掉了，今天突然想起就去搜了一下。项目中好像没有直接跳出方法，而是执行到循环外面（这里的需求是当遍历到最后一个直接跳出循环，return 在 <code>enumerateObjectsUsingBlock</code> 相当于 continue，所以项目中会造成直接跳出循环）。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/08/enumerateObjectsUsingBlock/#more" rel="contents">
               阅读全文 &raquo;
@@ -375,7 +475,14 @@
 
       
         
-          <p>UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView 的标准使用方式就能满足要求。像 Twitter / Weibo 这样的数据模型很复杂，数量也很多的情况下，我们就需要通过各种手段来优化 UITableView 的滚动流畅度。</p>
+          <h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><blockquote>
+<ul>
+<li><a href="http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights/18746930#18746930">Using Auto Layout in UITableView for dynamic cell layouts &amp; variable row heights</a></li>
+<li><a href="http://www.fieryrobot.com/blog/2008/10/01/glassy-scrolling-with-uitableview/">Glassy Scrolling with UITableView</a></li>
+<li><a href="http://stackoverflow.com/questions/6172158/how-can-i-speed-up-a-uitableview">How can I speed up a UITableView?</a></li>
+</ul>
+</blockquote>
+<p>UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView 的标准使用方式就能满足要求。像 Twitter / Weibo 这样的数据模型很复杂，数量也很多的情况下，我们就需要通过各种手段来优化 UITableView 的滚动流畅度。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/31/关于 UITableView 的滑动优化问题/#more" rel="contents">
               阅读全文 &raquo;
@@ -475,7 +582,9 @@
 <p><a href="http://merowing.info/2015/11/swift-init/">原文链接</a><br><em>PS：翻译水平有限，推荐看原文</em></p>
 </blockquote>
 <hr>
-<p><a href="http://merowing.info/2015/11/Initializers.playground.zip">下载 Playgroung 文件</a><br>
+<p><a href="http://merowing.info/2015/11/Initializers.playground.zip">下载 Playgroung 文件</a></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>因为 <code>Swift</code> 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。</p>
+<p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/28/翻译篇 － Swift init()/#more" rel="contents">
               阅读全文 &raquo;
@@ -644,7 +753,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
