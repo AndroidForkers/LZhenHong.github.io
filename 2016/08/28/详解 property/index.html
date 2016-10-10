@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/28/详解 property/index.html">
 <meta property="og:site_name" content="lzh's blog">
 <meta property="og:description" content="简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变">
-<meta property="og:updated_time" content="2016-09-12T15:49:58.000Z">
+<meta property="og:updated_time" content="2016-10-10T15:43:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解 property">
 <meta name="twitter:description" content="简介在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： @property (nonatomic, copy) NSString *name; 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变">
@@ -305,7 +305,7 @@
 <li>strong：为这种属性设置新值时，setter 会 retain 新值，release 旧值，再将新值设置给实例变量</li>
 <li>weak：为这种属性设置新值时，setter 不会 retain 新值，也不会 release 旧值，当引用的对象被释放时，该属性会被自动设为 nil</li>
 <li>unsafe_unretained：与 assign 相同，适用于对象类型，不会 retain 引用的对象，引用的对象被销毁后，不会被自动设为 nil</li>
-<li>copy：为这种属性设置新值时，不会 retain 新值，而会将其拷贝一份，在设置给实例变量。当属性类型为 NSString* 时，经常用这个关键字</li>
+<li>copy：为这种属性设置新值时，不会 retain 新值，而会将其拷贝一份，在设置给实例变量。当属性类型为 <code>NSString *</code> 时，经常用这个关键字</li>
 </ul>
 </li>
 </ul>

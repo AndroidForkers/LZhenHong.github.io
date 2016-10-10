@@ -276,7 +276,8 @@
 
       
         
-          <p>关于 GCD，网上的资料随便一搜就是一大把，写这篇文章主要是记录自己对于 GCD 的理解。<br>
+          <p>在我年少无知的时候其实就已经写过一篇关于 GCD 的文章，自己现在拿出来看觉得有点羞愧，发现自己对 GCD 的认识基本上还是停留在一年前的水平，所以自己开始慢慢补上 GCD 的知识。</p>
+<p>将以前写的东西拿出来<del>充字数</del>提醒自己。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/19/GCD-使用笔记/#more" rel="contents">
               阅读全文 &raquo;
@@ -378,7 +379,7 @@
 <li><a href="http://blog.sunnyxx.com/2014/04/30/ios_iterator/">iOS 中集合遍历方法的比较和技巧</a></li>
 </ul>
 </blockquote>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 StackOverflow 上看到<strong><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">这篇讨论</a></strong>的时候，让我发现了自己的盲区，所以写下这篇文章记录一下。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 StackOverflow 上看到 <strong><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">这篇讨论</a></strong> 的时候，让我发现了自己的盲区，所以写下这篇文章记录一下。</p>
 <p>有一次在项目中使用的 <code>enumerateObjectsUsingBlock</code> 遍历数组的时候，使用了 return，当时没有多想，在 code review 的时候被同事指出，当时觉得不妥就改掉了，今天突然想起就去搜了一下。项目中好像没有直接跳出方法，而是执行到循环外面（这里的需求是当遍历到最后一个直接跳出循环，return 在 <code>enumerateObjectsUsingBlock</code> 相当于 continue，所以项目中会造成直接跳出循环）。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/08/enumerateObjectsUsingBlock/#more" rel="contents">
