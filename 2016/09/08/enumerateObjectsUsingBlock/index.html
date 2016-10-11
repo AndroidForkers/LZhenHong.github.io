@@ -107,7 +107,7 @@ iOS 中集合遍历方法的比较和技巧
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-08%20%E4%B8%8B%E5%8D%881.28.56.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-08%20%E4%B8%8B%E5%8D%881.35.05.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-08%20%E4%B8%8B%E5%8D%881.37.50.png">
-<meta property="og:updated_time" content="2016-10-10T15:59:12.000Z">
+<meta property="og:updated_time" content="2016-10-11T10:18:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于 enumerateObjectsUsingBlock 的小知识点">
 <meta name="twitter:description" content="引用
@@ -317,7 +317,7 @@ iOS 中集合遍历方法的比较和技巧
 <ul>
 <li>stop 参数的作用：停止遍历，但是会执行完 block 的代码才会退出循环</li>
 </ul>
- <figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *names = @[<span class="string">@"lzh"</span>, <span class="string">@"ysh"</span>, <span class="string">@"yys"</span>];</div><div class="line">[names enumerateObjectsUsingBlock:^(<span class="built_in">NSString</span> *  _Nonnull obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line"><span class="keyword">if</span> ([obj isEqualToString:<span class="string">@"lzh"</span>]) &#123;</div><div class="line">   *stop = <span class="literal">YES</span>; <span class="comment">// 这里并不会马上退出循环，而是执行完 block 中的代码才退出循环</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"Name %@\n"</span>, obj);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+ <figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSArray</span> *names = @[<span class="string">@"lzh"</span>, <span class="string">@"ysh"</span>, <span class="string">@"yys"</span>];</div><div class="line">[names enumerateObjectsUsingBlock:^(<span class="built_in">NSString</span> *  _Nonnull obj, <span class="built_in">NSUInteger</span> idx, <span class="built_in">BOOL</span> * _Nonnull stop) &#123;</div><div class="line">    <span class="keyword">if</span> ([obj isEqualToString:<span class="string">@"lzh"</span>]) &#123;</div><div class="line">       *stop = <span class="literal">YES</span>; <span class="comment">// 这里并不会马上退出循环，而是执行完 block 中的代码才退出循环</span></div><div class="line">    &#125;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Name %@\n"</span>, obj);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
 <p>运行结果：<img src="http://oatw5vnlr.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-09-08%20%E4%B8%8B%E5%8D%881.28.56.png" alt="1.png"></p>
 <ul>
 <li>return 的作用：相当于前两种循环的 <code>continue</code>，会跳过此次循环</li>
