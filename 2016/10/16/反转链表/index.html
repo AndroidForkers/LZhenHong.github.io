@@ -102,7 +102,7 @@
 使用数组
 使用 3 个指针（我想出了这个 😉😉）
 从第 2 个节点到第 N 个节点，依次逐节点插入到第 1 个节点 (head 节点) 之后，最后将第一个节点挪到新表的">
-<meta property="og:updated_time" content="2016-10-16T16:00:28.000Z">
+<meta property="og:updated_time" content="2016-10-16T16:04:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反转链表">
 <meta name="twitter:description" content="看图理解单链表的反转
@@ -312,7 +312,7 @@
 <a id="more"></a>
 <h3 id="第一种：数组"><a href="#第一种：数组" class="headerlink" title="第一种：数组"></a>第一种：数组</h3><p>使用数组比较简单，这里暂时就不说了。</p>
 <h3 id="第二种：3-个指针"><a href="#第二种：3-个指针" class="headerlink" title="第二种：3 个指针"></a>第二种：3 个指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Node *<span class="built_in">list</span> = createList();</div><div class="line">Node *p, *q, *k;</div><div class="line">p = <span class="built_in">list</span>-&gt;next;</div><div class="line">q = p-&gt;next;</div><div class="line">k = q-&gt;next;</div><div class="line">p-&gt;next = <span class="literal">NULL</span>; <span class="comment">// 将第一个节点的 next 指针置空，代表新链表尾节点</span></div><div class="line"><span class="keyword">while</span> (k) &#123;</div><div class="line">   q-&gt;next = p;</div><div class="line">   p = q;</div><div class="line">   q = k;</div><div class="line">   k = k-&gt;next;</div><div class="line">&#125;</div><div class="line">q-&gt;next = p; <span class="comment">// 最后两个节点，在循环外进行处理</span></div><div class="line"><span class="built_in">list</span>-&gt;next = q; <span class="comment">// 将头节点的 next 指针指向新链表的首节点</span></div></pre></td></tr></table></figure>
-<p>更具体的分析可以看最上面给出的链接。 <a href="http://blog.csdn.net/feliciafay/article/details/6841115" target="_blank" rel="external">🔗</a></p>
+<p>更具体的分析可以看这里给出的链接。 <a href="http://blog.csdn.net/feliciafay/article/details/6841115" target="_blank" rel="external">🔗</a></p>
 
       
     </div>
