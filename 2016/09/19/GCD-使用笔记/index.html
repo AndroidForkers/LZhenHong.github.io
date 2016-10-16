@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/072323191425022.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/主线程.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/072323514709413.png">
-<meta property="og:updated_time" content="2016-10-10T15:57:12.000Z">
+<meta property="og:updated_time" content="2016-10-16T10:02:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCD 使用笔记">
 <meta name="twitter:description" content="在我年少无知的时候其实就已经写过一篇关于 GCD 的文章，自己现在拿出来看觉得有点羞愧，发现自己对 GCD 的认识基本上还是停留在一年前的水平，所以自己开始慢慢补上 GCD 的知识。
@@ -310,7 +310,7 @@
 <li><p><strong>异步提交</strong>：任务被异步提交给队列，<em>会开启新的线程</em>，但开多少新的线程，我们不能决定，由系统自己决定，并且不需要等异步任务执行完，就可以继续向下执行代码，异步提交的方式：<code>dispatch_async(dispatch_queue_t queue, dispatch_block_t block);</code></p>
 </li>
 </ol>
-<h4 id="GCD中不同的提交方式与不同队列的组合"><a href="#GCD中不同的提交方式与不同队列的组合" class="headerlink" title="GCD中不同的提交方式与不同队列的组合"></a>GCD中不同的提交方式与不同队列的组合</h4><p><strong>串行队列同步提交</strong></p>
+<h4 id="GCD-中不同的提交方式与不同队列的组合"><a href="#GCD-中不同的提交方式与不同队列的组合" class="headerlink" title="GCD 中不同的提交方式与不同队列的组合"></a>GCD 中不同的提交方式与不同队列的组合</h4><p><strong>串行队列同步提交</strong></p>
 <figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"com.yys.test"</span>, DISPATCH_QUEUE_SERIAL);</div><div class="line"><span class="built_in">dispatch_sync</span>(queue, ^&#123;</div><div class="line">    <span class="comment">// 下载文件，图片等资源</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ul>
 <li>首先根据同步提交 -&gt; 没有新的线程开启。</li>
@@ -420,6 +420,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/10/16/反转链表/" rel="prev" title="反转链表">
+                反转链表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -490,7 +494,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,7 +504,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -549,7 +553,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#任务"><span class="nav-number">1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列"><span class="nav-number">2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#任务的提交"><span class="nav-number">3.</span> <span class="nav-text">任务的提交</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD中不同的提交方式与不同队列的组合"><span class="nav-number">4.</span> <span class="nav-text">GCD中不同的提交方式与不同队列的组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD中特别的队列-gt-主队列-串行队列"><span class="nav-number">5.</span> <span class="nav-text">GCD中特别的队列 -> 主队列(串行队列)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的其他用处"><span class="nav-number">6.</span> <span class="nav-text">GCD的其他用处</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#任务"><span class="nav-number">1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列"><span class="nav-number">2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#任务的提交"><span class="nav-number">3.</span> <span class="nav-text">任务的提交</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD-中不同的提交方式与不同队列的组合"><span class="nav-number">4.</span> <span class="nav-text">GCD 中不同的提交方式与不同队列的组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD中特别的队列-gt-主队列-串行队列"><span class="nav-number">5.</span> <span class="nav-text">GCD中特别的队列 -> 主队列(串行队列)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的其他用处"><span class="nav-number">6.</span> <span class="nav-text">GCD的其他用处</span></a></li></ol></div>
             
           </div>
         </section>
