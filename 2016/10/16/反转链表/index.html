@@ -90,7 +90,8 @@
 
 使用数组
 使用 3 个指针（我想出了这个 😉😉）
-从第 2 个节点到第 N 个节点，依次逐节点插入到第 1 个节点 (head 节点) 之后，最后将第一个节点挪到新">
+插入法
+递归 NBest">
 <meta property="og:type" content="article">
 <meta property="og:title" content="反转链表">
 <meta property="og:url" content="http://yoursite.com/2016/10/16/反转链表/index.html">
@@ -101,8 +102,9 @@
 
 使用数组
 使用 3 个指针（我想出了这个 😉😉）
-从第 2 个节点到第 N 个节点，依次逐节点插入到第 1 个节点 (head 节点) 之后，最后将第一个节点挪到新">
-<meta property="og:updated_time" content="2016-10-20T09:58:15.000Z">
+插入法
+递归 NBest">
+<meta property="og:updated_time" content="2016-10-20T17:17:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反转链表">
 <meta name="twitter:description" content="看图理解单链表的反转
@@ -111,7 +113,8 @@
 
 使用数组
 使用 3 个指针（我想出了这个 😉😉）
-从第 2 个节点到第 N 个节点，依次逐节点插入到第 1 个节点 (head 节点) 之后，最后将第一个节点挪到新">
+插入法
+递归 NBest">
 
 
 
@@ -306,7 +309,7 @@
 <ul>
 <li>使用数组</li>
 <li>使用 3 个指针（我想出了这个 😉😉）</li>
-<li>从第 2 个节点到第 N 个节点，依次逐节点插入到第 1 个节点 (head 节点) 之后，最后将第一个节点挪到新表的表尾</li>
+<li>插入法</li>
 <li>递归 <del>NBest</del></li>
 </ul>
 <a id="more"></a>
@@ -314,7 +317,15 @@
 <p>这里就不说了。</p>
 <h3 id="第二种：3-个指针"><a href="#第二种：3-个指针" class="headerlink" title="第二种：3 个指针"></a>第二种：3 个指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Node *<span class="built_in">list</span> = createList();</div><div class="line">Node *p, *q, *k;</div><div class="line">p = <span class="built_in">list</span>-&gt;next;</div><div class="line">q = p-&gt;next;</div><div class="line">k = q-&gt;next;</div><div class="line">p-&gt;next = <span class="literal">NULL</span>; <span class="comment">// 将第一个节点的 next 指针置空，代表新链表尾节点</span></div><div class="line"><span class="keyword">while</span> (k) &#123;</div><div class="line">   q-&gt;next = p;</div><div class="line">   p = q;</div><div class="line">   q = k;</div><div class="line">   k = k-&gt;next;</div><div class="line">&#125;</div><div class="line">q-&gt;next = p; <span class="comment">// 最后两个节点，在循环外进行处理</span></div><div class="line"><span class="built_in">list</span>-&gt;next = q; <span class="comment">// 将头节点的 next 指针指向新链表的首节点</span></div></pre></td></tr></table></figure>
 <p>更具体的分析可以看这里给出的链接。 <a href="http://blog.csdn.net/feliciafay/article/details/6841115" target="_blank" rel="external">🔗</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过这次面试也让我认识到了自己的不足：</p>
+<h3 id="第三种：插入法"><a href="#第三种：插入法" class="headerlink" title="第三种：插入法"></a>第三种：插入法</h3><p>这种方法就是将节点依次插入到头节点后面。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Node *<span class="built_in">list</span> = createList();</div><div class="line">Node *p = <span class="built_in">list</span>-&gt;next;</div><div class="line">Node *q;</div><div class="line"><span class="keyword">while</span> (p-&gt;next) &#123;</div><div class="line">   q = p-&gt;next;</div><div class="line">   p-&gt;next = q-&gt;next;</div><div class="line">   q-&gt;next = <span class="built_in">list</span>-&gt;next;</div><div class="line">   <span class="built_in">list</span>-&gt;next = q;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>了解思路加上画一些图，能写出这些代码。但是这种我应该是想不出来 🙄🙄。</p>
+<h3 id="第四种：递归"><a href="#第四种：递归" class="headerlink" title="第四种：递归"></a>第四种：递归</h3><p>递归最难的一步就是将问题抽象出相似的子问题。</p>
+<p>我们试想一下一个链表 <code>A -&gt; B -&gt; C -&gt; D</code>，要将这个链表反转，我们可以先将 <code>B -&gt; C -&gt; D</code> 反转，然后再将 <code>A</code> 与三个反转好的链表进行反转，这样就完成链表的反转。要 <code>B-&gt; C -&gt; D</code> 反转，我们可以先反转 <code>C -&gt; D</code>，然后再将 <code>B</code> 与反转好的 <code>C</code> 与 <code>D</code> 进行反转。这样看来我们就将问题抽象成相识的子问题。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> Node *newFisrtNode = <span class="literal">NULL</span>;</div><div class="line"><span class="function">Node *<span class="title">reverseLinkList</span><span class="params">(Node *<span class="built_in">list</span>)</span> </span>&#123;</div><div class="line">    <span class="comment">// 只有一个节点，直接返回，并且这里应该是新链表的第一个节点</span></div><div class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !<span class="built_in">list</span>-&gt;next) &#123;</div><div class="line">        newFisrtNode = <span class="built_in">list</span>; <span class="comment">// 这里是新链表的第一个节点</span></div><div class="line">        <span class="keyword">return</span> <span class="built_in">list</span>;</div><div class="line">    &#125;</div><div class="line">    Node *p = reverseLinkList(<span class="built_in">list</span>-&gt;next);</div><div class="line">    p-&gt;next = <span class="built_in">list</span>;</div><div class="line">    <span class="built_in">list</span>-&gt;next = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">list</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</div><div class="line">    Node *<span class="built_in">list</span> = createList();</div><div class="line">    reverseLinkList(<span class="built_in">list</span>-&gt;next);</div><div class="line">    </div><div class="line">    <span class="built_in">list</span>-&gt;next = newFisrtNode;</div><div class="line">    Node *p = <span class="built_in">list</span>-&gt;next;</div><div class="line">    <span class="keyword">while</span> (p) &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d -&gt; "</span>, p-&gt;value);</div><div class="line">        p = p-&gt;next;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里其实还可以用栈来做，因为递归和栈基本上是可以互换使用的。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这些代码中只考虑了一般情况，有一些特殊情况没有处理，例如：链表为空或者只有一个节点等。</p>
+<p>通过这次面试也让我认识到了自己的不足：</p>
 <ol>
 <li>因为自己的项目经历比较少，所以在 APP 结构的规划和设计存在很大的不足。</li>
 <li>对一些知识点了解的不够透彻，只有一些模糊的印象。</li>
@@ -490,7 +501,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种：数组"><span class="nav-number">1.</span> <span class="nav-text">第一种：数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种：3-个指针"><span class="nav-number">2.</span> <span class="nav-text">第二种：3 个指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种：数组"><span class="nav-number">1.</span> <span class="nav-text">第一种：数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种：3-个指针"><span class="nav-number">2.</span> <span class="nav-text">第二种：3 个指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种：插入法"><span class="nav-number">3.</span> <span class="nav-text">第三种：插入法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四种：递归"><span class="nav-number">4.</span> <span class="nav-text">第四种：递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
