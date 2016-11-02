@@ -1,0 +1,684 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Expected App Behaviors
+
+这一篇主要是总结自己在看 App Programming Guide for iOS 的一些收获。大部分内容都是来自 App Programming Guide for iOS。
+Xcode 创建的新项目能直接运行在真机和模拟器上，但是你需要做一些自定义才能提交到 App Store 和给用户提供好的体验。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="App Programming Guide for iOS - Expected App Behaviors">
+<meta property="og:url" content="http://yoursite.com/2016/11/01/Expected-App-Behaviors/index.html">
+<meta property="og:site_name" content="lzh's blog">
+<meta property="og:description" content="Expected App Behaviors
+
+这一篇主要是总结自己在看 App Programming Guide for iOS 的一些收获。大部分内容都是来自 App Programming Guide for iOS。
+Xcode 创建的新项目能直接运行在真机和模拟器上，但是你需要做一些自定义才能提交到 App Store 和给用户提供好的体验。">
+<meta property="og:updated_time" content="2016-11-02T07:58:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="App Programming Guide for iOS - Expected App Behaviors">
+<meta name="twitter:description" content="Expected App Behaviors
+
+这一篇主要是总结自己在看 App Programming Guide for iOS 的一些收获。大部分内容都是来自 App Programming Guide for iOS。
+Xcode 创建的新项目能直接运行在真机和模拟器上，但是你需要做一些自定义才能提交到 App Store 和给用户提供好的体验。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <title> App Programming Guide for iOS - Expected App Behaviors | lzh's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">lzh's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">没有人会让你变得更好，只有你自己！！！</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                App Programming Guide for iOS - Expected App Behaviors
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T13:02:33+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/01/Expected-App-Behaviors/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/01/Expected-App-Behaviors/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/ExpectedAppBehaviors/ExpectedAppBehaviors.html#//apple_ref/doc/uid/TP40007072-CH3-SW9" target="_blank" rel="external">Expected App Behaviors</a></p>
+</blockquote>
+<p>这一篇主要是总结自己在看 App Programming Guide for iOS 的一些收获。大部分内容都是来自 App Programming Guide for iOS。</p>
+<p>Xcode 创建的新项目能直接运行在真机和模拟器上，但是你需要做一些自定义才能提交到 App Store 和给用户提供好的体验。</p>
+ <a id="more"></a>
+<h2 id="Providing-the-Required-Resources"><a href="#Providing-the-Required-Resources" class="headerlink" title="Providing the Required Resources"></a>Providing the Required Resources</h2><ul>
+<li>An Information property-list file：这个就是项目中的 <strong>info.plist</strong> 文件，这个文件中涉及了一些系统与你的 App 交互需要的信息。你可以直接编辑这个文件，也可以在你的项目 Info 选项页中进行编辑。</li>
+<li>A declaration of app‘s required capabilities：每个应用都需要表明你的应用的运行环境。App Store 会根据这些信息来决定你的应用是否可以运行在用户的设备上。你可以在项目 Info 选项页的 Required device capabilities 入口来编辑。</li>
+<li>One or more icons</li>
+<li>One or more launch images</li>
+</ul>
+<h4 id="The-App-Bundle"><a href="#The-App-Bundle" class="headerlink" title="The App Bundle"></a>The App Bundle</h4><p>当你编译 iOS App 的时候，Xcode 会将其打包成一个 bundle。一个典型的 App Bundle 包含以下内容：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">File</th>
+<th style="text-align:center">Example</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">App 可执行文件</td>
+<td style="text-align:center">MyApp</td>
+<td style="text-align:center">可执行文件包含你的编译代码，可执行文件的名称跟你的 App 除去扩展名一样</td>
+</tr>
+<tr>
+<td style="text-align:center">The information property list file</td>
+<td style="text-align:center">Info.plist</td>
+<td style="text-align:center">Info.plist 文件中包含 App 的配置信息，涉及了一些系统与你的 App 交互需要的信息。这个文件必须叫 Info.plist</td>
+</tr>
+<tr>
+<td style="text-align:center">Storyboard files (or nib files)</td>
+<td style="text-align:center">MainBoard.storyboard</td>
+<td style="text-align:center">SB 包含需要展示的视图和控制器</td>
+</tr>
+<tr>
+<td style="text-align:center">Ad hoc distribution icon</td>
+<td style="text-align:center">iTunesArtwork</td>
+<td style="text-align:center">？？？暂时不清楚</td>
+</tr>
+<tr>
+<td style="text-align:center">Settings bundle</td>
+<td style="text-align:center">Settings.bundle</td>
+<td style="text-align:center">如果你想在系统 Settings app 展示自定义的页面，你就需要包含这个 Setting bundle，这个 bundle 包含 property list 和其他资源来自定义你的 setting 界面。 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i" target="_blank" rel="external">Preferences and Settings Programming Guide.</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="The-Information-Property-List-File"><a href="#The-Information-Property-List-File" class="headerlink" title="The Information Property List File"></a>The Information Property List File</h4><p>Xcode 会使用 General／Capabilities／Info 选项页的信息在编译期来生成 Info.plist 文件。这个文件被 App Store 和 iOS 系统使用来决定应用的运行环境和定位主要资源。</p>
+<p>对于一些比较基本的选项，你可以在 General／Capabilities／Info 选项页来配置。如果 Xcode 没有提供图形化界面，你就需要在 Xcode property list 的编辑器提供正确的键值对。</p>
+<ul>
+<li>Declare your app’s required capabilities in the Info tab：这个表明你的应用的最低运行系统，App Store 会用这个来避免比较低的系统来下载你的应用。</li>
+<li>Apps that require a persistent Wi-Fi connection must declare that fact：这个对应 Info.plist 文件中的 <strong>UIRequiresPersistentWiFi</strong> 键，设置这个键对应的值为 YES 来避免 iOS 系统关闭活跃的 Wi-Fi 连接。所有使用网络的应用都推荐添加这个键。</li>
+<li>Newsstand apps must declare themselves as such：在 Info.plist 文件中添加 <strong>UINewsstandApp</strong> 键来表明你的应用是在 Newsstand 应用中展示内容的。For more see <a href="http://www.jianshu.com/p/935d18c5b5ae" target="_blank" rel="external">iOS 杂志类应用开发 - NewsstandKit</a>.</li>
+<li>Apps that define custom document types must declare those types：使用 Info 选项页的 Document Types 的选项来定义应用支持的文件的 UTI 和 icon。iOS 系统会使用这些信息决定你的应用是否能够处理特定的文件类型。For more see <a href="https://www.raywenderlich.com/133825/uiactivityviewcontroller-tutorial" target="_blank" rel="external">UIActivityViewController Tutorial: Sharing Data</a>.</li>
+<li>Apps can declare any custom URL schemes they support：在 Info 选项页的 URL Types 选项来定义应用能处理的 URL Schemes。For more see <a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html#//apple_ref/doc/uid/TP40007072-CH6-SW1" target="_blank" rel="external">Using URL Schemes to Communicate with Apps</a>.</li>
+<li>Apps must provide purpose strings (sometimes called “usage descriptions”) for accessing user data and certain app features：当访问用户的隐私数据(位置、通讯录等等)时，你需要向用户申请权限。这样你就需要在 Info.plist 文件中描述你需要访问隐私数据的原因。如果你的应用在申请权限的时候没有提供对应的原因，App 会直接闪退。</li>
+</ul>
+<h4 id="Declaring-the-Required-Device-Capabilities"><a href="#Declaring-the-Required-Device-Capabilities" class="headerlink" title="Declaring the Required Device Capabilities"></a>Declaring the Required Device Capabilities</h4><p>每个应用都需要表明最低支持的 iOS 操作系统。你可以在 Info.plist 文件中添加 <strong>UIRequiredDeviceCapabilities</strong> 键来表明应用额外的要求，这个键对应的值是字典／数组。</p>
+<h4 id="App-Icons"><a href="#App-Icons" class="headerlink" title="App Icons"></a>App Icons</h4><p>Xcode 在创建新项目的时候，会自动为应用的图标创建一个 image asset，Xcode 会在编译期在 Info.plist 文件添加相应的键值对。</p>
+<h4 id="App-Launch-Default-Images"><a href="#App-Launch-Default-Images" class="headerlink" title="App Launch (Default) Images"></a>App Launch (Default) Images</h4><p>系统启动应用的时候会先显示启动图片，当你的应用准备好系统会移除启动图片。当应用从后台回到前台，如果你应用的 UI 截图可用，系统会使用你的截图。同样 Xcode 在创建新项目的时候，会自动为应用的启动图片创建一个 image asset，Xcode 会在编译期在 Info.plist 文件添加相应的键值对。</p>
+<h2 id="Supporting-User-Privacy"><a href="#Supporting-User-Privacy" class="headerlink" title="Supporting User Privacy"></a>Supporting User Privacy</h2><p>只有经过用户的同意应用才能访问用户的隐私数据。iOS 系统会保护 位置／联系人／日历事件／提醒事项／照片等等。你需要在 Info.plist 文件中提供访问隐私数据的原因，当你获取权限的时候，填写的原因会展示给用户看。在 iOS 10 之后你必须要在 Info.plist 文件中添加访问隐私数据的原因。</p>
+<p>For more see <a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/ExpectedAppBehaviors/ExpectedAppBehaviors.html#//apple_ref/doc/uid/TP40007072-CH3-SW9" target="_blank" rel="external">Expected App Behaviors</a> Table 1-2.</p>
+<h2 id="Internationalizing-Your-App"><a href="#Internationalizing-Your-App" class="headerlink" title="Internationalizing Your App"></a>Internationalizing Your App</h2><p>为了国际化你的应用，你需要提供下列国际化的文件：</p>
+<ul>
+<li>Storyboard files</li>
+<li>Strings files</li>
+<li>Image files</li>
+<li>Video and audio files</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/16/反转链表/" rel="next" title="反转链表">
+                <i class="fa fa-chevron-left"></i> 反转链表
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/01/Expected-App-Behaviors/"
+           data-title="App Programming Guide for iOS - Expected App Behaviors" data-url="http://yoursite.com/2016/11/01/Expected-App-Behaviors/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/IMG_0036.jpg"
+               alt="yys_LZH" />
+          <p class="site-author-name" itemprop="name">yys_LZH</p>
+          <p class="site-description motion-element" itemprop="description">没有人会让你变得更好，只有你自己！！！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/LZhenHong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/yys_lzh" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Providing-the-Required-Resources"><span class="nav-number">1.</span> <span class="nav-text">Providing the Required Resources</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-App-Bundle"><span class="nav-number">1.0.1.</span> <span class="nav-text">The App Bundle</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-Information-Property-List-File"><span class="nav-number">1.0.2.</span> <span class="nav-text">The Information Property List File</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Declaring-the-Required-Device-Capabilities"><span class="nav-number">1.0.3.</span> <span class="nav-text">Declaring the Required Device Capabilities</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#App-Icons"><span class="nav-number">1.0.4.</span> <span class="nav-text">App Icons</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#App-Launch-Default-Images"><span class="nav-number">1.0.5.</span> <span class="nav-text">App Launch (Default) Images</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supporting-User-Privacy"><span class="nav-number">2.</span> <span class="nav-text">Supporting User Privacy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Internationalizing-Your-App"><span class="nav-number">3.</span> <span class="nav-text">Internationalizing Your App</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LZhenHong</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lzhyys"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
