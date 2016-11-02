@@ -86,7 +86,6 @@
 
 <meta name="description" content="原文链接PS：翻译水平有限，推荐看原文
 
-
 下载 Playgroung 文件
 简介因为 Swift 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。
 我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。">
@@ -96,16 +95,14 @@
 <meta property="og:site_name" content="lzh's blog">
 <meta property="og:description" content="原文链接PS：翻译水平有限，推荐看原文
 
-
 下载 Playgroung 文件
 简介因为 Swift 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。
 我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/initializers.png">
-<meta property="og:updated_time" content="2016-10-10T15:53:42.000Z">
+<meta property="og:updated_time" content="2016-11-02T08:06:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="翻译篇 － Swift init()">
 <meta name="twitter:description" content="原文链接PS：翻译水平有限，推荐看原文
-
 
 下载 Playgroung 文件
 简介因为 Swift 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。
@@ -301,10 +298,10 @@
         <blockquote>
 <p><a href="http://merowing.info/2015/11/swift-init/" target="_blank" rel="external">原文链接</a><br><em>PS：翻译水平有限，推荐看原文</em></p>
 </blockquote>
-<hr>
 <p><a href="http://merowing.info/2015/11/Initializers.playground.zip" target="_blank" rel="external">下载 Playgroung 文件</a></p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>因为 <code>Swift</code> 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。</p>
-<p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。<br><a id="more"></a></p>
+<p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。</p>
+<a id="more"></a>
 <p>让我们假定你有一个这样的类：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</div><div class="line">  <span class="keyword">let</span> coreDataStack: <span class="type">CoreDataStack</span></div><div class="line">  <span class="keyword">let</span> mfpService = <span class="type">MFPService</span>()</div><div class="line">  <span class="keyword">let</span> integrator: <span class="type">IntegrationService</span></div><div class="line">  <span class="keyword">let</span> flowController: <span class="type">FlowController</span></div><div class="line">  <span class="keyword">let</span> window: <span class="type">UIWindow</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这样的类需要许多行来初始化所有的属性，所以我们会将初始化逻辑分成多个函数，可能像这样：</p>

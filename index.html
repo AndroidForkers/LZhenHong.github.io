@@ -391,7 +391,7 @@
       
         
           <blockquote>
-<p><a href="http://blog.csdn.net/feliciafay/article/details/6841115">看图理解单链表的反转</a></p>
+<p> <a href="http://blog.csdn.net/feliciafay/article/details/6841115">看图理解单链表的反转</a></p>
 </blockquote>
 <p>背景：今天百度面试被问到线性链表的反转，<del>哈哈哈哈哈</del> 不会，数据结构算法之类的永远是心中的伤痛，自己慢慢想啊想，还是想出了一个比较 low 的解决方法，回到家自己上网搜了一下解决方法，有四种解决方法之多：</p>
 <ul>
@@ -606,11 +606,8 @@
 
       
         
-          <h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><blockquote>
-<ul>
-<li><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">What is the BOOL *stop argument for enumerateObjectsUsingBlock: used for?</a></li>
-<li><a href="http://blog.sunnyxx.com/2014/04/30/ios_iterator/">iOS 中集合遍历方法的比较和技巧</a></li>
-</ul>
+          <blockquote>
+<p><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">What is the BOOL *stop argument for enumerateObjectsUsingBlock: used for?</a><br><a href="http://blog.sunnyxx.com/2014/04/30/ios_iterator/">iOS 中集合遍历方法的比较和技巧</a></p>
 </blockquote>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 StackOverflow 上看到 <strong><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">这篇讨论</a></strong> 的时候，让我发现了自己的盲区，所以写下这篇文章记录一下。</p>
 <p>有一次在项目中使用的 <code>enumerateObjectsUsingBlock</code> 遍历数组的时候，使用了 return，当时没有多想，在 code review 的时候被同事指出，当时觉得不妥就改掉了，今天突然想起就去搜了一下。项目中好像没有直接跳出方法，而是执行到循环外面（这里的需求是当遍历到最后一个直接跳出循环，return 在 <code>enumerateObjectsUsingBlock</code> 相当于 continue，所以项目中会造成直接跳出循环）。</p>
@@ -716,12 +713,8 @@
 
       
         
-          <h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><blockquote>
-<ul>
-<li><a href="http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights/18746930#18746930">Using Auto Layout in UITableView for dynamic cell layouts &amp; variable row heights</a></li>
-<li><a href="http://www.fieryrobot.com/blog/2008/10/01/glassy-scrolling-with-uitableview/">Glassy Scrolling with UITableView</a></li>
-<li><a href="http://stackoverflow.com/questions/6172158/how-can-i-speed-up-a-uitableview">How can I speed up a UITableView?</a></li>
-</ul>
+          <blockquote>
+<p><a href="http://stackoverflow.com/questions/18746929/using-auto-layout-in-uitableview-for-dynamic-cell-layouts-variable-row-heights/18746930#18746930">Using Auto Layout in UITableView for dynamic cell layouts &amp; variable row heights</a><br><a href="http://www.fieryrobot.com/blog/2008/10/01/glassy-scrolling-with-uitableview/">Glassy Scrolling with UITableView</a><br><a href="http://stackoverflow.com/questions/6172158/how-can-i-speed-up-a-uitableview">How can I speed up a UITableView?</a></p>
 </blockquote>
 <p>UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView 的标准使用方式就能满足要求。像 Twitter / Weibo 这样的数据模型很复杂，数量也很多的情况下，我们就需要通过各种手段来优化 UITableView 的滚动流畅度。</p>
           <div class="post-more-link text-center">
@@ -829,10 +822,9 @@
           <blockquote>
 <p><a href="http://merowing.info/2015/11/swift-init/">原文链接</a><br><em>PS：翻译水平有限，推荐看原文</em></p>
 </blockquote>
-<hr>
 <p><a href="http://merowing.info/2015/11/Initializers.playground.zip">下载 Playgroung 文件</a></p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>因为 <code>Swift</code> 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。</p>
-<p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。<br>
+<p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/28/翻译篇 － Swift init()/#more" rel="contents">
               阅读全文 &raquo;
@@ -935,7 +927,7 @@
 
       
         
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。<br>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/28/详解 property/#more" rel="contents">
               阅读全文 &raquo;
