@@ -233,6 +233,114 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/03/The-App-Life-Cycle/" itemprop="url">
+                  App Programming Guide for iOS - The App Life Cycle
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T19:50:35+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/03/The-App-Life-Cycle/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/03/The-App-Life-Cycle/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheAppLifeCycle/TheAppLifeCycle.html#//apple_ref/doc/uid/TP40007072-CH2-SW1">The App Life Cycle</a></p>
+</blockquote>
+<h2 id="The-Main-Function"><a href="#The-Main-Function" class="headerlink" title="The Main Function"></a>The Main Function</h2><p>每个基于 C 语言的程序的入口都是 main 函数，iOS App 也没有区别。开发 iOS 你不需要自己编写 main 函数，Xcode 的模版项目会自动实现，一般情况下你不需要修改 main 函数。main 函数会将控制权交给 UIKit framework。<code>UIApplicationMain</code> 函数会创建应用的核心对象，从 SB 文件中加载 UI 界面，启动 App 的 runloop 等等。</p>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"AppDelegate.h"</span></span></div><div class="line"> </div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate <span class="keyword">class</span>]));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>关于在 Main 函数之前发生了什么，可以看这个 <a href="http://blog.sunnyxx.com/2014/08/30/objc-pre-main/">iOS 程序 main 函数之前发生了什么</a>。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/03/The-App-Life-Cycle/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/01/Expected-App-Behaviors/" itemprop="url">
                   App Programming Guide for iOS - Expected App Behaviors
                 </a>
@@ -340,7 +448,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/16/反转链表/" itemprop="url">
+                <a class="post-title-link" href="/2016/10/16/Reverse-Linked-List/" itemprop="url">
                   反转链表
                 </a>
               
@@ -365,8 +473,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/16/反转链表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/反转链表/" itemprop="commentsCount"></span>
+                <a href="/2016/10/16/Reverse-Linked-List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/16/Reverse-Linked-List/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -401,7 +509,7 @@
 <li>递归 <del>NBest</del></li>
 </ul>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/16/反转链表/#more" rel="contents">
+            <a class="btn" href="/2016/10/16/Reverse-Linked-List/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -452,7 +560,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/GCD-使用笔记/" itemprop="url">
+                <a class="post-title-link" href="/2016/09/19/GCD-Note/" itemprop="url">
                   GCD 使用笔记
                 </a>
               
@@ -477,8 +585,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/19/GCD-使用笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/GCD-使用笔记/" itemprop="commentsCount"></span>
+                <a href="/2016/09/19/GCD-Note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/GCD-Note/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -505,7 +613,7 @@
           <p>在我年少无知的时候其实就已经写过一篇关于 GCD 的文章，自己现在拿出来看觉得有点羞愧，发现自己对 GCD 的认识基本上还是停留在一年前的水平，所以自己开始慢慢补上 GCD 的知识。</p>
 <p>将以前写的东西拿出来<del>充字数</del>提醒自己。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/GCD-使用笔记/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/GCD-Note/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -663,7 +771,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/31/关于 UITableView 的滑动优化问题/" itemprop="url">
+                <a class="post-title-link" href="/2016/08/31/UITableView-Scroll-Smoth/" itemprop="url">
                   关于 UITableView 的滑动优化问题
                 </a>
               
@@ -688,8 +796,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/31/关于 UITableView 的滑动优化问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/关于 UITableView 的滑动优化问题/" itemprop="commentsCount"></span>
+                <a href="/2016/08/31/UITableView-Scroll-Smoth/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/UITableView-Scroll-Smoth/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -718,7 +826,7 @@
 </blockquote>
 <p>UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时候，毫无疑问 UITableView 是最好的选择，Apple 已经将 UITableView 的优化做到非常极致了，满足我们简单的模型数据展示基本上是没有问题的。但是很多时候，我们展示的不是简简单单的文字数据，还有其他对性能消耗很大的数据，例如：图片等。在数据不多的情况下，遵循 UITableView 的标准使用方式就能满足要求。像 Twitter / Weibo 这样的数据模型很复杂，数量也很多的情况下，我们就需要通过各种手段来优化 UITableView 的滚动流畅度。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/31/关于 UITableView 的滑动优化问题/#more" rel="contents">
+            <a class="btn" href="/2016/08/31/UITableView-Scroll-Smoth/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -769,8 +877,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/28/翻译篇 － Swift init()/" itemprop="url">
-                  翻译篇 － Swift init()
+                <a class="post-title-link" href="/2016/08/28/Swift-init/" itemprop="url">
+                  翻译篇 - Swift init()
                 </a>
               
             
@@ -794,8 +902,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/28/翻译篇 － Swift init()/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/翻译篇 － Swift init()/" itemprop="commentsCount"></span>
+                <a href="/2016/08/28/Swift-init/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/Swift-init/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -826,7 +934,7 @@
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>因为 <code>Swift</code> 的强类型和不可变性，所以就有规则防止你在一个对象完全初始化之前访问属性。</p>
 <p>我不喜欢在一个函数体内做太多的事情，所以我会将初始化函数分成多个函数，这样问题就来了。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/翻译篇 － Swift init()/#more" rel="contents">
+            <a class="btn" href="/2016/08/28/Swift-init/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -877,7 +985,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/28/详解 property/" itemprop="url">
+                <a class="post-title-link" href="/2016/08/28/property/" itemprop="url">
                   详解 property
                 </a>
               
@@ -902,8 +1010,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/28/详解 property/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/详解 property/" itemprop="commentsCount"></span>
+                <a href="/2016/08/28/property/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/property/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -929,7 +1037,7 @@
         
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/详解 property/#more" rel="contents">
+            <a class="btn" href="/2016/08/28/property/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1000,7 +1108,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
