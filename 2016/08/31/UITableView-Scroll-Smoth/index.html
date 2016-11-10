@@ -94,7 +94,7 @@ UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个
 <meta property="og:description" content="Using Auto Layout in UITableView for dynamic cell layouts &amp;amp; variable row heightsGlassy Scrolling with UITableViewHow can I speed up a UITableView?
 
 UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个相似的模型数据的时">
-<meta property="og:updated_time" content="2016-11-02T08:07:14.000Z">
+<meta property="og:updated_time" content="2016-11-10T07:32:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于 UITableView 的滑动优化问题">
 <meta name="twitter:description" content="Using Auto Layout in UITableView for dynamic cell layouts &amp;amp; variable row heightsGlassy Scrolling with UITableViewHow can I speed up a UITableView?
@@ -319,7 +319,7 @@ UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个
 <p><strong>AutoLayout</strong><br>平常我们在编写 UI 布局的时候，一般有两个方法</p>
 <ul>
 <li>纯代码手写：灵活多变，但是在编写复杂 UI 界面时，代码会非常冗长且没有什么意义</li>
-<li>利用 Xib 或者 StoryBoard：布局 UI 界面非常快，但是在多人合作的时候会有许多问题，因为每次打开这些文件就会更改内容，即使你什么都没做，所以你可能有许多冲突需要解决，并且这些文件的冲突还不好解决。这些文件本质上是 XML 文件，Xcode 将其识别为 UI 界面，但是我们解决冲突的时候是编辑 XML 文件，所以到底需要保留那一部分代码，常常让我们非常困惑。</li>
+<li>利用 Xib 或者 StoryBoard：布局 UI 界面非常快，但是在多人合作的时候会有许多问题，<del>因为每次打开这些文件就会更改内容，即使你什么都没做，所以</del>你可能有许多冲突需要解决，并且这些文件的冲突还不好解决。这些文件本质上是 XML 文件，Xcode 将其识别为 UI 界面，但是我们解决冲突的时候是编辑 XML 文件，所以到底需要保留那一部分代码，常常让我们非常困惑。</li>
 </ul>
 <p>抱歉说了这么多废话 😅😅</p>
 <p>我们经常需要自定义 UITableViewCell 的子类，UITableViewCell 的布局有时会很复杂，因为要适配多种屏幕，所以，利用 Autolayout 无疑是挺好的选择，尤其是利用 Xib 和 SB 编写 UI 的时候。但是，当你的布局非常复杂同样会影响 UITableView 的滚动流畅度，因为系统需要花大量的时间去计算 UI 界面的布局，更具体的原因可以看 <strong><a href="http://draveness.me/layout-performance/" target="_blank" rel="external">这里</a></strong>。当你想要将 UITableView 优化到极致，不妨可以考虑一下替换 AutoLayout。</p>
@@ -440,7 +440,7 @@ UITableView 应该是 iOS 开发中最重要的控件，当我们要展示多个
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
