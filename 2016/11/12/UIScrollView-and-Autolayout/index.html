@@ -1,0 +1,690 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="UIScrollView And AutolayoutUIScrollView Tutorial: Getting Started史上最简单的UIScrollView+Autolayout出坑指南UIScrollview与Autolayout的那点事AutoLayout Tips
+
+这一篇介绍如何将 Autolayout 应用到 UIScrollView 上。
+Introduction在 UIS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIScrollView And Autolayout">
+<meta property="og:url" content="http://yoursite.com/2016/11/12/UIScrollView-and-Autolayout/index.html">
+<meta property="og:site_name" content="lzh's blog">
+<meta property="og:description" content="UIScrollView And AutolayoutUIScrollView Tutorial: Getting Started史上最简单的UIScrollView+Autolayout出坑指南UIScrollview与Autolayout的那点事AutoLayout Tips
+
+这一篇介绍如何将 Autolayout 应用到 UIScrollView 上。
+Introduction在 UIS">
+<meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/UIScrollViewWithAutolayout.png">
+<meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/FirstExample.png">
+<meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/SecondExampleUIScrollView.png">
+<meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/SecondExample.png">
+<meta property="og:updated_time" content="2016-11-11T17:20:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIScrollView And Autolayout">
+<meta name="twitter:description" content="UIScrollView And AutolayoutUIScrollView Tutorial: Getting Started史上最简单的UIScrollView+Autolayout出坑指南UIScrollview与Autolayout的那点事AutoLayout Tips
+
+这一篇介绍如何将 Autolayout 应用到 UIScrollView 上。
+Introduction在 UIS">
+<meta name="twitter:image" content="http://oatw5vnlr.bkt.clouddn.com/UIScrollViewWithAutolayout.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/12/UIScrollView-and-Autolayout/"/>
+
+
+  <title> UIScrollView And Autolayout | lzh's blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">lzh's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UIScrollView And Autolayout
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-12T12:00:35+08:00" content="2016-11-12">
+              2016-11-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/12/UIScrollView-and-Autolayout/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/12/UIScrollView-and-Autolayout/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a href="https://developer.apple.com/library/content/technotes/tn2154/_index.html#//apple_ref/doc/uid/DTS40013309-CH1-MIXED_APPROACH" target="_blank" rel="external">UIScrollView And Autolayout</a><br><a href="https://www.raywenderlich.com/122139/uiscrollview-tutorial" target="_blank" rel="external">UIScrollView Tutorial: Getting Started</a><br><a href="https://bestswifter.com/uiscrollviewwithautolayout/" target="_blank" rel="external">史上最简单的UIScrollView+Autolayout出坑指南</a><br><a href="http://adad184.com/2015/12/01/scrollview-under-autolayout/" target="_blank" rel="external">UIScrollview与Autolayout的那点事</a><br><a href="https://github.com/nixzhu/dev-blog/blob/master/autolayout-tips.md#tip-2" target="_blank" rel="external">AutoLayout Tips</a></p>
+</blockquote>
+<p>这一篇介绍如何将 Autolayout 应用到 UIScrollView 上。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在 <a href="https://www.raywenderlich.com/122139/uiscrollview-tutorial" target="_blank" rel="external">UIScrollView Tutorial: Getting Started</a> 这篇文章中的 <strong>Scrolling and Zooming a Large Image</strong> 这节中，给 UIScrollView 添加 top／bottom／leading／trailing 的约束，确定 UIScrollView 的 frame。再给 UIScrollView 中的 UIImageView 添加 constant 为 0 的 top／bottom／leading／trailing 约束，运行之后，UIScrollView 中的 contentSize 就是图片的大小，可以滚动查看所有内容。</p>
+<a id="more"></a>
+<p>添加的约束如下图。<br><img src="http://oatw5vnlr.bkt.clouddn.com/UIScrollViewWithAutolayout.png" alt="UIScrollViewWithAutolayout"></p>
+<p>看到这里比较好奇 UIScrollView 是如何使用 Autolayout 来自动计算 <code>contentSize</code> 的。所以去网上搜了一下相关资料，加上一些自己的理解整理出来这篇文章。</p>
+<h2 id="Key-Point"><a href="#Key-Point" class="headerlink" title="Key Point"></a>Key Point</h2><p>UIScrollView 使用 Autolayout 主要是用来自动确定自身的 <code>frame</code> 与 <code>contentSize</code>，<code>frame</code> 是根据 UIScrollView 自己的约束来确定，而 <code>contentSize</code> 是根据子视图与 UIScrollView 之间的约束来确定的。所以，UIScrollView 的子视图添加的约束一定要能确定 UIScrollView 的 <code>contentSize</code>。</p>
+<p>这点跟 self-sizing cell 有点相似，cell 可以根据完整的内部约束来确定自己的高度，只是 cell 的宽度与 UITableView 的宽度是相同的，所以我们不需要显示地去表明子视图具体的宽度，只需要确定 leading 和 trailing 的约束就可以确定子视图的 width，再添加好垂直方向上的约束，系统就可以根据我们添加的约束自动算出 cell 的高度。</p>
+<blockquote>
+<p>The trick to getting Auto Layout to work on a UITableViewCell is to ensure you have constraints to pin each subview on all sides - that is, each subview should have leading, top, trailing and bottom constraints.</p>
+</blockquote>
+<p>上面这段来自 <a href="https://www.raywenderlich.com/129059/self-sizing-table-view-cells" target="_blank" rel="external">Self-sizing Table View Cells</a>。表示 cell 自动算高度需要的约束条件，感兴趣的话可以了解一下。</p>
+<h2 id="In-Depth-Explanation"><a href="#In-Depth-Explanation" class="headerlink" title="In Depth Explanation"></a>In Depth Explanation</h2><p>一般来说，Autolayout 认为视图的 top／bottom／leading／trailing 边界是可见 (我的理解是这里的可见相对于 UIScrollView 的 content view  的边界而言的，因为这个 content view 是不可见的) 的边界。也就是说，如果你把一个视图固定在 superview 的左边界，你其实是把视图固定在 superview 的 bounds 的最小 x 值。改变 superview 的 bounds 的 origin 值不会改变视图的位置。</p>
+<p>UIScrollView 通过改变 bounds 的 origin 值来滚动它的内容。为了让 UIScrollView 能与 Autolayout 协同工作，UIScrollView 的 top／bottom／leading／trailing 边界代表 UIScrollView 的 content view 的边界。</p>
+<blockquote>
+<ul>
+<li>Position and size your scroll view with constraints external to the scroll view.</li>
+<li>Use constraints to lay out the subviews within the scroll view, being sure that the constraints tie to all four edges of the scroll view and do not rely on the scroll view to get their size.</li>
+</ul>
+</blockquote>
+<p>上面两点来自 <a href="https://developer.apple.com/library/content/technotes/tn2154/_index.html#//apple_ref/doc/uid/DTS40013309-CH1-MIXED_APPROACH" target="_blank" rel="external">UIScrollView And Autolayout</a>。解释起来就是 UIScrollView 需要自己来确定自身的大小和位置，不能依靠子视图的约束。UIScrollView 的子视图需要自己明确自己的大小，不能依赖 UIScrollView 来决定大小。</p>
+<p>拿我在最前面提到的例子来解释一下：</p>
+<ol>
+<li>我们先给 UIScrollView 添加 top／bottom／leading／trailing 的约束，这样就可以确定 UIScrollView 自身的 <code>frame</code>。这里没有用到子视图的信息来确定 <code>frame</code>。</li>
+<li>我们添加 UIImageView 到 UIScrollView 中，然后给 UIImageView 设置图片内容。</li>
+<li>给 UIImageView 添加 top／bottom／leading／trailing 的 constant 为 0 的约束。确定 UIScrollView 的 <code>contentSize</code>。</li>
+</ol>
+<p>这样就👌👌了，UIImageView 有一个固有内容大小，默认与图片的大小相等，所以这里我们不需要明确指出 UIImageView 的宽高，只需要添加与 UIScrollView 边界的间距来确定 <code>contentSize</code> 的大小。</p>
+<p>如果这里我们添加的是 UIView 的话，就需要添加 width／height 的约束来明确指出 UIView 的大小，例如：添加 width=50，height=50 的约束来指明 UIView 大小，然后再添加与 UIScrollView 的约束。我们可以这样理解：添加在 UIScrollView 自身的约束，是作用在 UIScrollView 可见的边界上。子视图与 UIScrollView 之间的约束中，是作用于子视图与不可见的 content view 上，而这个 content view 的大小是不确定的，需要根据子视图之间的约束来得出。</p>
+<h2 id="For-Example"><a href="#For-Example" class="headerlink" title="For Example"></a>For Example</h2><p>这跟我们平常使用 Autolayout 有点不太一样。下面举例来说明 Autolayout 在 UIScrollView 上使用的不同。</p>
+<h3 id="Use-Autolayout-in-Common-View"><a href="#Use-Autolayout-in-Common-View" class="headerlink" title="Use Autolayout in Common View"></a>Use Autolayout in Common View</h3><p><img src="http://oatw5vnlr.bkt.clouddn.com/FirstExample.png" alt="FirstExample"></p>
+<p>大概的代码实现，数值是我随便给的，运行结果不一定和上面一样。</p>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> blueColor];</div><div class="line">  </div><div class="line"><span class="built_in">UIView</span> *redView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">redView.backgroundColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">[<span class="keyword">self</span>.view addSubview:redView];</div><div class="line">[redView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.edges.equalTo(<span class="keyword">self</span>.view).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">100</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>));</div><div class="line">&#125;];</div><div class="line">    </div><div class="line"><span class="built_in">UIView</span> *yellowView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">yellowView.backgroundColor = [<span class="built_in">UIColor</span> yellowColor];</div><div class="line">[redView addSubview:yellowView];</div><div class="line">[yellowView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.edges.equalTo(redView).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">200</span>, <span class="number">50</span>, <span class="number">20</span>, <span class="number">20</span>));</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p>如果我们需要确定黄色 view 的 <code>frame</code>，添加如上的约束就可以得到。这是我们平常使用 Autolayout 添加的约束，如果视图可以根据自身内容得出固有内容大小，例如：UILabel／UIButton／UIImageView 等，那么只需要确定视图的位置就 👌。</p>
+<h3 id="Autolayout-in-UIScrollView"><a href="#Autolayout-in-UIScrollView" class="headerlink" title="Autolayout in UIScrollView"></a>Autolayout in UIScrollView</h3><figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> blueColor];</div><div class="line">    </div><div class="line"><span class="keyword">self</span>.scrollView = [[<span class="built_in">UIScrollView</span> alloc] init];</div><div class="line"><span class="keyword">self</span>.scrollView.bounces = <span class="literal">NO</span>;</div><div class="line"><span class="keyword">self</span>.scrollView.clipsToBounds = <span class="literal">NO</span>;</div><div class="line"><span class="keyword">self</span>.scrollView.backgroundColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">[<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.scrollView];</div><div class="line">    </div><div class="line">[<span class="keyword">self</span>.scrollView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.edges.equalTo(<span class="keyword">self</span>.view).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">100</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>));</div><div class="line">&#125;];</div><div class="line">    </div><div class="line"><span class="built_in">UIView</span> *yellowView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">yellowView.backgroundColor = [<span class="built_in">UIColor</span> yellowColor];</div><div class="line">[<span class="keyword">self</span>.scrollView addSubview:yellowView];</div><div class="line">[yellowView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.top.equalTo(<span class="keyword">self</span>.scrollView).offset(<span class="number">200</span>);</div><div class="line">   make.bottom.equalTo(<span class="keyword">self</span>.scrollView).offset(<span class="number">-200</span>);</div><div class="line">   make.leading.equalTo(<span class="keyword">self</span>.scrollView).offset(<span class="number">50</span>);</div><div class="line">   make.trailing.equalTo(<span class="keyword">self</span>.scrollView).offset(<span class="number">-200</span>);</div><div class="line">   <span class="comment">// Important</span></div><div class="line">   make.width.and.height.equalTo(@<span class="number">100</span>);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<p><img src="http://oatw5vnlr.bkt.clouddn.com/SecondExampleUIScrollView.png" alt="SecondExampleUIScrollVie"></p>
+<p>这是上面代码的运行结果，我把 scrollView 的 <code>clipsToBounds</code> 设置为 NO，方便我们查看。如果我们不添加 <code>make.width.and.height.equalTo(@100);</code> 这行代码的话，黄色 view 是不会出现的，因为 scrollView 的 <code>contentSize</code> 不确定。</p>
+<p>我们结合下面这张图来分析一下。</p>
+<p><img src="http://oatw5vnlr.bkt.clouddn.com/SecondExample.png" alt="SecondExample"></p>
+<p>黑色边框代表 scrollView 的 <code>contentSize</code> ，我们不能假设这个值是已知的，这个是未知量，需要我们给出完整的约束来计算。所以，<code>contentSize</code> 不知道，不用黑色约束的话，就无法得出黄色 view 的大小，黄色 view 就不显示。</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>UIScrollView 的子视图需要自己明确自己的大小，不能依赖 UIScrollView 来决定大小。UIScrollView 是需要依靠子视图的约束来确定 <code>contentSize</code> 的，所以在 UIScrollView 上使用 Autolayout 需要注意子视图的约束是否足够完整来确定 <code>contentSize</code>。</p>
+<p>UIScrollView 与同级视图或者父视图之间的约束只能确定 UIScrollView 的 <code>frame</code>，不能确定 <code>contentSize</code>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/10/Baidu-Interview/" rel="next" title="百度面试准备">
+                <i class="fa fa-chevron-left"></i> 百度面试准备
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/12/UIScrollView-and-Autolayout/"
+           data-title="UIScrollView And Autolayout" data-url="http://yoursite.com/2016/11/12/UIScrollView-and-Autolayout/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/IMG_0036.jpg"
+               alt="yys_LZH" />
+          <p class="site-author-name" itemprop="name">yys_LZH</p>
+          <p class="site-description motion-element" itemprop="description">没有人会让你变得更好，只有你自己！！！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/LZhenHong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/yys_lzh" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Key-Point"><span class="nav-number">2.</span> <span class="nav-text">Key Point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#In-Depth-Explanation"><span class="nav-number">3.</span> <span class="nav-text">In Depth Explanation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#For-Example"><span class="nav-number">4.</span> <span class="nav-text">For Example</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-Autolayout-in-Common-View"><span class="nav-number">4.1.</span> <span class="nav-text">Use Autolayout in Common View</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Autolayout-in-UIScrollView"><span class="nav-number">4.2.</span> <span class="nav-text">Autolayout in UIScrollView</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LZhenHong</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lzhyys"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
