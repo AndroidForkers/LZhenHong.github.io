@@ -97,7 +97,7 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/core_objects_2x.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/event_draw_cycle_a_2x.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/high_level_flow_2x.png">
-<meta property="og:updated_time" content="2016-11-04T17:16:23.000Z">
+<meta property="og:updated_time" content="2016-11-25T16:00:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App Programming Guide for iOS - The App Life Cycle">
 <meta name="twitter:description" content="The App Life Cycle
@@ -359,9 +359,9 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 <li><code>application:didFinishLaunchingWithOptions:</code> - 在应用展示给用户之前，你可以在这个方法做最后的初始化操作。</li>
 <li><code>applicationDidBecomeActive:</code> - 当你的 App 从后台回到前台的时候会调用这个方法。</li>
 <li><code>applicationWillResignActive:</code> - 当你的 App 即将离开前台时，这个方法会被调用。</li>
-<li><code>applicationDidEnterBackground:</code> - 这时你的 App 运行在后台，并且可能在任意时间进入 Suspended 状态。</li>
+<li><code>applicationDidEnterBackground:</code> - 这时你的 App 运行在后台，并且可能在任意时间进入 Suspended 状态。在这里可以做一些清理操作，<code>SDWebImage</code> 就监听了这个通知，来做一些清理过期图片的操作。</li>
 <li><code>applicationWillEnterForeground:</code> - 你的 App 离开后台，即将进入前台，但是仍然没有进入 active 状态。</li>
-<li><code>applicationWillTerminate:</code> - 你的 App 将要结束。如果你的 App 此时处于 Suspended 状态，这个方法就不会调用。</li>
+<li><code>applicationWillTerminate:</code> - 你的 App 将要结束。如果你的 App 此时处于 Suspended 状态，这个方法就不会调用。同样可以在这里做一些清理操作，<code>SDWebImage</code> 就监听了这个通知，来做一些清理过期图片的操作。</li>
 </ul>
 <h2 id="App-Termination"><a href="#App-Termination" class="headerlink" title="App Termination"></a>App Termination</h2><p>App 应该有随时被终止的准备，系统会回收处于 Suspended 状态的 App 的内存资源以便分配给新启动的 App 使用。处于 Suspended 状态的 App 被终止时，不会收到通知。App 处于 Background 状态，系统会在终止 App 之前调用 <code>applicationWillTerminate:</code> 代理方法。如果设备重启的话，系统仍然不会调用 <code>applicationWillTerminate:</code> 代理方法。</p>
 <p><del>In addition to the system terminating your app, the user can terminate your app explicitly using the multitasking UI. User-initiated termination has the same effect as terminating a suspended app. The app’s process is killed and no notification is sent to the app.</del> 这句没太理解。</p>
@@ -485,7 +485,7 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

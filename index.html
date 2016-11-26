@@ -236,6 +236,112 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/25/Background-Execution/" itemprop="url">
+                  App Programming Guide for iOS - Background Execution
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-25T20:27:43+08:00" content="2016-11-25">
+              2016-11-25
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/25/Background-Execution/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/25/Background-Execution/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1">Background Execution</a><br><a href="https://www.raywenderlich.com/143128/background-modes-tutorial-getting-started">Background Modes Tutorial: Getting Started</a></p>
+</blockquote>
+<p>我们知道 iOS App 有五种状态：not running／inactive／active／background／suspended，当用户按下 Home 键的时候，App 就会进入 background 状态，随后进入 suspended 状态。在 suspended 状态下，我们没有办法对 App 进行任何操作。所以，我们会尽量在 background 状态下就做好 App 的一些清理等操作，来使 App 有进入 suspended 的准备。但是，iOS 系统分配给 App 的 background 状态下的时间是有限的，我们需要做一些自定义的操作来向 iOS 系统申请更多的后台时间，或者直接常驻后台。例如一些音乐类 App，当我们退出这类 App，我们还是可以听到 🎵 的播放，这些 App 就属于常驻后台的 App。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/25/Background-Execution/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/12/UIScrollView-and-Autolayout/" itemprop="url">
                   UIScrollView And Autolayout
                 </a>
@@ -1180,112 +1286,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/28/property/" itemprop="url">
-                  详解 property
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T05:03:38+08:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/28/property/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/property/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在利用 Objective-C 的开发中，我们需要创建许多的类，类包括成员变量和成员方法／类方法 (Objective-C 中没有类成员变量)。但是大部分 Obj-C 的类文件中都看不到成员变量的申明，我们更多看到的是形如： <code>@property (nonatomic, copy) NSString *name;</code> 。这是因为当我们这样写之后，Xcode 会自动为我们添加成员变量，并生成相应成员变量的存取方法。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/property/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1324,7 +1331,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
