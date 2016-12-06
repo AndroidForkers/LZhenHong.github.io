@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -97,7 +97,7 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/core_objects_2x.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/event_draw_cycle_a_2x.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/high_level_flow_2x.png">
-<meta property="og:updated_time" content="2016-11-25T16:00:13.000Z">
+<meta property="og:updated_time" content="2016-12-06T16:49:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App Programming Guide for iOS - The App Life Cycle">
 <meta name="twitter:description" content="The App Life Cycle
@@ -110,7 +110,7 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"hide"},
     fancybox: true,
     motion: true,
@@ -303,7 +303,9 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 <a id="more"></a>
 <h2 id="The-Structure-of-an-App"><a href="#The-Structure-of-an-App" class="headerlink" title="The Structure of an App"></a>The Structure of an App</h2><p>每个应用的核心就是 <code>UIApplication</code> 对象，这个对象的任务就是处理系统与 App 之间的交互。</p>
 <p>下面这张图片显示了大部分应用的对象以及这些对象扮演的角色。</p>
-<p><img src="http://oatw5vnlr.bkt.clouddn.com/core_objects_2x.png" alt="core_objects_2x"></p>
+<p><div align="center"><br><img src="http://oatw5vnlr.bkt.clouddn.com/core_objects_2x.png" width="340" alt="Core Objects"></div></p>
+<div align="left">
+
 <p>在上面这张图中我们可以看到 iOS 应用遵守 MVC 架构。但是 MVC 是有一定的缺陷的，各种逻辑都是由 C(控制器) 来处理的，例如作为 V(视图) 的代理，接收 M(模型) 分发的通知，这样随着业务的增长，控制器中的代码就可能会越来越多。MVVM 等其他的设计模式就这样出现了。<del>扯远了 🙄🙄</del></p>
 <table>
 <thead>
@@ -340,7 +342,9 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 </tbody>
 </table>
 <h2 id="The-Main-Run-Loop"><a href="#The-Main-Run-Loop" class="headerlink" title="The Main Run Loop"></a>The Main Run Loop</h2><p>App 的 main run loop 处理所有与用户有关的事件，main run loop 运行在 App 的<strong>主线程</strong>上，这样保证 App 处理的事件与接收的顺序是一样的。</p>
-<p><img src="http://oatw5vnlr.bkt.clouddn.com/event_draw_cycle_a_2x.png" alt="event_draw_cycle_a_2x"></p>
+<p><div align="center"><br><img src="http://oatw5vnlr.bkt.clouddn.com/event_draw_cycle_a_2x.png" width="340" alt="Event draw cycle"></div></p>
+<div align="left">
+
 <p>上面这张图向我们展示了 App 是如何处理用户交互的。当用户与设备进行交互的时候，系统会为这些交互生成相应的事件，然后通过 UIKit 的特殊端口传递给 App。事件在内部是通过队列管理的，事件是一个一个交给 main run loop 来处理的。UIApplication 对象是第一个接收到事件的，由它来决定如何处理这个事件。</p>
 <p>一些类型的事件是通过 main run loop 分发的，另外一些事件是直接分发给 delegate 或者传递给 block。<del>分别举一些例子</del></p>
 <p>Controls 的触摸事件跟 Views 的触摸事件是不一样的，Controls 的交互方式通常来说是有限的，所以这些事件被重新打包成动作消息 (action messages) 传递给 target 对象。这里就是 <code>target-action</code> 设计模式。</p>
@@ -352,7 +356,9 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 <li>Background：App 在后台，并且在执行代码</li>
 <li>Suspended：App 在后台，没有执行代码。当 App 进入这个状态，App 不会接收到通知</li>
 </ul>
-<p><img src="http://oatw5vnlr.bkt.clouddn.com/high_level_flow_2x.png" alt="high_level_flow_2x"></p>
+<p><div align="center"><br><img src="http://oatw5vnlr.bkt.clouddn.com/high_level_flow_2x.png" width="340" alt="High level flow"></div></p>
+<div align="left">
+
 <p>大部分 App 状态改变都会调用相应的 App 代理方法：</p>
 <ul>
 <li><code>application:willFinishLaunchingWithOptions:</code> - 在 App 的启动时间，这是你第一次可以执行自己的代码。</li>
@@ -372,7 +378,7 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 <li>在启动时，尽量不要将任务放在主线程执行，只将与 UI 界面有关的初始化放在主线程，其他任务异步执行</li>
 </ul>
 <p>For more see <a href="https://developer.apple.com/library/content/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091" target="_blank" rel="external">Concurrency Programming Guide</a>.</p>
-
+</div></div></div>
       
     </div>
 
@@ -485,7 +491,7 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -495,7 +501,7 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -523,6 +529,15 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
                     <i class="fa fa-fw fa-twitter"></i>
                   
                   Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:levine5blue@gmail.com" target="_blank" title="Mail">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  Mail
                 </a>
               </span>
             
@@ -577,7 +592,7 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Mist
   </a>
 </div>
 
@@ -642,13 +657,6 @@ The Main Function每个基于 C 语言的程序的入口都是 main 函数，iOS
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>

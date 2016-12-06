@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -100,7 +100,7 @@ Introduction在 UIS">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/FirstExample.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/SecondExampleUIScrollView.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/SecondExample.png">
-<meta property="og:updated_time" content="2016-11-13T10:40:17.000Z">
+<meta property="og:updated_time" content="2016-12-02T13:11:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIScrollView And Autolayout">
 <meta name="twitter:description" content="UIScrollView And AutolayoutUIScrollView Tutorial: Getting Started史上最简单的UIScrollView+Autolayout出坑指南UIScrollview与Autolayout的那点事AutoLayout Tips
@@ -114,7 +114,7 @@ Introduction在 UIS">
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"hide"},
     fancybox: true,
     motion: true,
@@ -304,7 +304,10 @@ Introduction在 UIS">
 <p>这一篇介绍如何将 Autolayout 应用到 UIScrollView 上。</p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在 <a href="https://www.raywenderlich.com/122139/uiscrollview-tutorial" target="_blank" rel="external">UIScrollView Tutorial: Getting Started</a> 这篇文章中的 <strong>Scrolling and Zooming a Large Image</strong> 这节中，给 UIScrollView 添加 top／bottom／leading／trailing 的约束，确定 UIScrollView 的 frame。再给 UIScrollView 中的 UIImageView 添加 constant 为 0 的 top／bottom／leading／trailing 约束，运行之后，UIScrollView 中的 contentSize 就是图片的大小，可以滚动查看所有内容。</p>
 <a id="more"></a>
-<p>添加的约束如下图。<br><img src="http://oatw5vnlr.bkt.clouddn.com/UIScrollViewWithAutolayout.png" alt="UIScrollViewWithAutolayout"></p>
+<p>添加的约束如下图。</p>
+<p><div align="center"><br><img src="http://oatw5vnlr.bkt.clouddn.com/UIScrollViewWithAutolayout.png" alt="UIScrollViewWithAutolayout"></div></p>
+<div align="left">
+
 <p>看到这里比较好奇 UIScrollView 是如何使用 Autolayout 来自动计算 <code>contentSize</code> 的。所以去网上搜了一下相关资料，加上一些自己的理解整理出来这篇文章。</p>
 <h2 id="Key-Point"><a href="#Key-Point" class="headerlink" title="Key Point"></a>Key Point</h2><p>UIScrollView 使用 Autolayout 主要是用来自动确定自身的 <code>frame</code> 与 <code>contentSize</code>，<code>frame</code> 是根据 UIScrollView 自己的约束来确定，而 <code>contentSize</code> 是根据子视图与 UIScrollView 之间的约束来确定的。所以，UIScrollView 的子视图添加的约束一定要能确定 UIScrollView 的 <code>contentSize</code>。</p>
 <p>这点跟 self-sizing cell 有点相似，cell 可以根据完整的内部约束来确定自己的高度，只是 cell 的宽度与 UITableView 的宽度是相同的，所以我们不需要显示地去表明子视图具体的宽度，只需要确定 leading 和 trailing 的约束就可以确定子视图的 width，再添加好垂直方向上的约束，系统就可以根据我们添加的约束自动算出 cell 的高度。</p>
@@ -330,19 +333,25 @@ Introduction在 UIS">
 <p>这样就👌👌了，UIImageView 有一个固有内容大小，默认与图片的大小相等，所以这里我们不需要明确指出 UIImageView 的宽高，只需要添加与 UIScrollView 边界的间距来确定 <code>contentSize</code> 的大小。</p>
 <p>如果这里我们添加的是 UIView 的话，就需要添加 width／height 的约束来明确指出 UIView 的大小，例如：添加 width=50，height=50 的约束来指明 UIView 大小，然后再添加与 UIScrollView 的约束。我们可以这样理解：添加在 UIScrollView 自身的约束，是作用在 UIScrollView 可见的边界上。子视图与 UIScrollView 之间的约束中，是作用于子视图与不可见的 content view 上，而这个 content view 的大小是不确定的，需要根据子视图之间的约束来得出。</p>
 <h2 id="For-Example"><a href="#For-Example" class="headerlink" title="For Example"></a>For Example</h2><p>这跟我们平常使用 Autolayout 有点不太一样。下面举例来说明 Autolayout 在 UIScrollView 上使用的不同。</p>
-<h3 id="Use-Autolayout-in-Common-View"><a href="#Use-Autolayout-in-Common-View" class="headerlink" title="Use Autolayout in Common View"></a>Use Autolayout in Common View</h3><p>(红色 view 是 UIView)<br><img src="http://oatw5vnlr.bkt.clouddn.com/FirstExample.png" alt="FirstExample"></p>
+<h3 id="Use-Autolayout-in-Common-View"><a href="#Use-Autolayout-in-Common-View" class="headerlink" title="Use Autolayout in Common View"></a>Use Autolayout in Common View</h3><p><div align="center"><br>(红色 view 是 UIView)<br><img src="http://oatw5vnlr.bkt.clouddn.com/FirstExample.png" alt="FirstExample"></div></p>
+<div align="left">
+
 <p>大概的代码实现，数值是我随便给的，运行结果不一定和上面一样。</p>
 <figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> blueColor];</div><div class="line">  </div><div class="line"><span class="built_in">UIView</span> *redView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">redView.backgroundColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">[<span class="keyword">self</span>.view addSubview:redView];</div><div class="line">[redView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.edges.equalTo(<span class="keyword">self</span>.view).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">100</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>));</div><div class="line">&#125;];</div><div class="line">    </div><div class="line"><span class="built_in">UIView</span> *yellowView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">yellowView.backgroundColor = [<span class="built_in">UIColor</span> yellowColor];</div><div class="line">[redView addSubview:yellowView];</div><div class="line">[yellowView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.edges.equalTo(redView).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">200</span>, <span class="number">50</span>, <span class="number">20</span>, <span class="number">20</span>));</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
 <p>如果我们需要确定黄色 view 的 <code>frame</code>，添加如上的约束就可以得到。这是我们平常使用 Autolayout 添加的约束，如果视图可以根据自身内容得出固有内容大小，例如：UILabel／UIButton／UIImageView 等，那么只需要确定视图的位置就 👌。</p>
 <h3 id="Autolayout-in-UIScrollView"><a href="#Autolayout-in-UIScrollView" class="headerlink" title="Autolayout in UIScrollView"></a>Autolayout in UIScrollView</h3><figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> blueColor];</div><div class="line">    </div><div class="line"><span class="keyword">self</span>.scrollView = [[<span class="built_in">UIScrollView</span> alloc] init];</div><div class="line"><span class="keyword">self</span>.scrollView.bounces = <span class="literal">NO</span>;</div><div class="line"><span class="keyword">self</span>.scrollView.clipsToBounds = <span class="literal">NO</span>;</div><div class="line"><span class="keyword">self</span>.scrollView.backgroundColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">[<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.scrollView];</div><div class="line">    </div><div class="line">[<span class="keyword">self</span>.scrollView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.edges.equalTo(<span class="keyword">self</span>.view).insets(<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">100</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">50</span>));</div><div class="line">&#125;];</div><div class="line">    </div><div class="line"><span class="built_in">UIView</span> *yellowView = [[<span class="built_in">UIView</span> alloc] init];</div><div class="line">yellowView.backgroundColor = [<span class="built_in">UIColor</span> yellowColor];</div><div class="line">[<span class="keyword">self</span>.scrollView addSubview:yellowView];</div><div class="line">[yellowView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">   make.top.equalTo(<span class="keyword">self</span>.scrollView).offset(<span class="number">200</span>);</div><div class="line">   make.bottom.equalTo(<span class="keyword">self</span>.scrollView).offset(<span class="number">-200</span>);</div><div class="line">   make.leading.equalTo(<span class="keyword">self</span>.scrollView).offset(<span class="number">50</span>);</div><div class="line">   make.trailing.equalTo(<span class="keyword">self</span>.scrollView).offset(<span class="number">-200</span>);</div><div class="line">   <span class="comment">// Important</span></div><div class="line">   make.width.and.height.equalTo(@<span class="number">100</span>);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
-<p>(红色的 view 是 UIScrollView)<br><img src="http://oatw5vnlr.bkt.clouddn.com/SecondExampleUIScrollView.png" alt="SecondExampleUIScrollVie"></p>
+<p><div align="center"><br>(红色的 view 是 UIScrollView)<br><img src="http://oatw5vnlr.bkt.clouddn.com/SecondExampleUIScrollView.png" alt="SecondExampleUIScrollVie"></div></p>
+<div align="left">
+
 <p>这是上面代码的运行结果，我把 scrollView 的 <code>clipsToBounds</code> 设置为 NO，方便我们查看。如果我们不添加 <code>make.width.and.height.equalTo(@100);</code> 这行代码的话，黄色 view 是不会出现的，因为 scrollView 的 <code>contentSize</code> 不确定。</p>
 <p>我们结合下面这张图来分析一下。(红色的 view 是 UIScrollView)</p>
-<p><img src="http://oatw5vnlr.bkt.clouddn.com/SecondExample.png" alt="SecondExample"></p>
+<p><div align="center"><br><img src="http://oatw5vnlr.bkt.clouddn.com/SecondExample.png" alt="SecondExample"></div></p>
+<div align="left">
+
 <p>黑色边框代表 scrollView 的 <code>contentSize</code> ，我们不能假设这个值是已知的，这个是未知量，需要我们给出完整的约束来计算。所以，<code>contentSize</code> 不知道，不用黑色约束的话，就无法得出黄色 view 的大小，黄色 view 就不显示。</p>
 <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>UIScrollView 的子视图需要自己明确自己的大小，不能依赖 UIScrollView 来决定大小。UIScrollView 是需要依靠子视图的约束来确定 <code>contentSize</code> 的，所以在 UIScrollView 上使用 Autolayout 需要注意子视图的约束是否足够完整来确定 <code>contentSize</code>。</p>
 <p>UIScrollView 与同级视图或者父视图之间的约束只能确定 UIScrollView 的 <code>frame</code>，不能确定 <code>contentSize</code>。</p>
-
+</div></div></div></div>
       
     </div>
 
@@ -455,7 +464,7 @@ Introduction在 UIS">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -465,7 +474,7 @@ Introduction在 UIS">
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -493,6 +502,15 @@ Introduction在 UIS">
                     <i class="fa fa-fw fa-twitter"></i>
                   
                   Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:levine5blue@gmail.com" target="_blank" title="Mail">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  Mail
                 </a>
               </span>
             
@@ -547,7 +565,7 @@ Introduction在 UIS">
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Mist
   </a>
 </div>
 
@@ -612,13 +630,6 @@ Introduction在 UIS">
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/072323191425022.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/主线程.png">
 <meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/072323514709413.png">
-<meta property="og:updated_time" content="2016-11-26T02:52:18.000Z">
+<meta property="og:updated_time" content="2016-12-02T13:08:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCD 使用笔记">
 <meta name="twitter:description" content="在我年少无知的时候其实就已经写过一篇关于 GCD 的文章，自己现在拿出来看觉得有点羞愧，发现自己对 GCD 的认识基本上还是停留在一年前的水平，所以自己开始慢慢补上 GCD 的知识。
@@ -108,7 +108,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Pisces',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"hide"},
     fancybox: true,
     motion: true,
@@ -299,11 +299,14 @@
 <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>按照 FIFO (先进先出)的顺序帮我们调度任务，GCD 会把我们添加到队列中的任务取出，放到线程中执行。队列分为：</p>
 <ol>
 <li><p>串行队列：串行队列同一时间只能有一个任务执行，后一个任务只有在前一个任务执行完之后才能被调度到线程中执行。</p>
-<p> <img src="http://oatw5vnlr.bkt.clouddn.com/072323111886385.png" alt="072323111886385"></p>
-</li>
+<p> <div align="center"><br> <img src="http://oatw5vnlr.bkt.clouddn.com/072323111886385.png" alt="072323111886385"></div></p>
+ <div align="left">
+</div></li>
 <li><p>并行队列：并行队列同一时间可以多个任务执行，后一个任务不需要等前一个任务执行完，就可以被调度。</p>
-<p> <img src="http://oatw5vnlr.bkt.clouddn.com/072323191425022.png" alt="072323191425022"></p>
-</li>
+<p> <div align="center"><br> <img src="http://oatw5vnlr.bkt.clouddn.com/072323191425022.png" alt="072323191425022"></div></p>
+ <div align="left">
+
+</div></li>
 </ol>
 <h2 id="任务的提交"><a href="#任务的提交" class="headerlink" title="任务的提交"></a>任务的提交</h2><p>任务提交的方式会决定要不要 <strong>开启新的线程</strong>，在 GCD 中将任务添加到队列中有两种方式：</p>
 <ol>
@@ -343,7 +346,9 @@
 <li>同步提交使用时尤其注意，不能在当前线程再向这个线程中提交任务。</li>
 <li>主线程在执行任务 A，在任务 A 中向主队列中添加任务 B，这时任务 B 会在主线程中执行，由于<em>主队列是串行队列</em>，所以任务会依次执行，任务 A 执行完就会执行任务 B，但是任务 A 要执行完则任务 B 必须也要执行完，但是任务 B 要等任务 A 执行完才能执行，因此会发生死锁，代码不会向下执行。</li>
 </ul>
-<p><img src="http://oatw5vnlr.bkt.clouddn.com/主线程.png" alt="主线程"></p>
+<p><div align="center"><br><img src="http://oatw5vnlr.bkt.clouddn.com/主线程.png" alt="主线程"></div></p>
+<div align="left">
+
 <h3 id="主队列异步提交"><a href="#主队列异步提交" class="headerlink" title="主队列异步提交"></a>主队列异步提交</h3><figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</div><div class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">    <span class="comment">// 下载文件，图片等资源</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ul>
 <li>这一情况也是很特殊的，尽管是异步提交，但是没有新的线程开启，GCD会在恰当的时候把你提交的任务在主线程中执行完，执行的时刻不可控。</li>
@@ -351,9 +356,9 @@
 <h2 id="GCD-的其他用法"><a href="#GCD-的其他用法" class="headerlink" title="GCD 的其他用法"></a>GCD 的其他用法</h2><h3 id="dispatch-after-延后执行"><a href="#dispatch-after-延后执行" class="headerlink" title="dispatch_after: 延后执行"></a>dispatch_after: 延后执行</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">dispatch_time_t time ＝ dispatch_time(DISPATCH_TIME_NOW, (int64_t)(需要延后的时间 * NSEC_PER_SEC));</div><div class="line">dispatch_after(time, dispatch_get_main_queue(), ^&#123;</div><div class="line">   // 需要延后执行的代码</div><div class="line">&#125;);</div><div class="line">NSLog(@"线程执行开始");</div><div class="line">dispatch_async(dispatch_get_main_queue(), ^&#123;</div><div class="line">   [NSThread sleepForTimeInterval:10.];</div><div class="line">&#125;);</div><div class="line">dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5. * NSEC_PER_SEC));</div><div class="line">dispatch_after(time, dispatch_get_main_queue(), ^&#123;</div><div class="line">   NSLog(@"延后提交任务”);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ul>
 <li>需要注意的是，这里并不是在某一个时刻执行任务，只是将任务提交给队列。</li>
-<li><p>执行结果：</p>
-<p>  <img src="http://oatw5vnlr.bkt.clouddn.com/072323514709413.png" alt="072323514709413"></p>
-</li>
+<li><p>执行结果：<br>  <div align="center"><br>  <img src="http://oatw5vnlr.bkt.clouddn.com/072323514709413.png" alt="072323514709413"></div></p>
+  <div align="left">
+</div></li>
 <li><p>这里第二次打印是在第一次打印10秒之后，并不是5秒之后。</p>
 </li>
 </ul>
@@ -373,7 +378,7 @@
 <li>这两个函数提交的任务，在执行时会阻塞后面的任务，在这一时间内，只有这一任务在执行，后续任务只有在这个任务执行完成后才能执行，并且所有在这个任务之前的任务一定会先于这个任务完成。</li>
 <li>dispatch_barrier_sync 和 dispatch_barrier_async 只在自己创建的并发队列上有效，在全局并发队列、串行队列上，效果跟 dispatch_sync、 dispatch_async 效果一样。</li>
 </ul>
-
+</div>
       
     </div>
 
@@ -486,7 +491,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -496,7 +501,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -524,6 +529,15 @@
                     <i class="fa fa-fw fa-twitter"></i>
                   
                   Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:levine5blue@gmail.com" target="_blank" title="Mail">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  Mail
                 </a>
               </span>
             
@@ -578,7 +592,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Mist
   </a>
 </div>
 
@@ -643,13 +657,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
