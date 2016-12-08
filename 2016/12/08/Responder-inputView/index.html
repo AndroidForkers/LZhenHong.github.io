@@ -1,0 +1,673 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Custom Views for Data InputThe Responder Chain Is Made Up of Responder Objects
+
+前几天在看响应者链条的时候，看到 UIResponder 有两个很有用的属性，但是自己不熟悉，就是 inputView 和 inputAccessoryView。原来自己练手的时候，需要这样的功能，但是自己不知道这两个属性，导致自己花费了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIResponder 拾遗：inputView 和 inputAccessoryView">
+<meta property="og:url" content="http://yoursite.com/2016/12/08/Responder-inputView/index.html">
+<meta property="og:site_name" content="lzh's blog">
+<meta property="og:description" content="Custom Views for Data InputThe Responder Chain Is Made Up of Responder Objects
+
+前几天在看响应者链条的时候，看到 UIResponder 有两个很有用的属性，但是自己不熟悉，就是 inputView 和 inputAccessoryView。原来自己练手的时候，需要这样的功能，但是自己不知道这两个属性，导致自己花费了">
+<meta property="og:image" content="http://oatw5vnlr.bkt.clouddn.com/inputAccessory_Example.png">
+<meta property="og:updated_time" content="2016-12-08T15:55:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIResponder 拾遗：inputView 和 inputAccessoryView">
+<meta name="twitter:description" content="Custom Views for Data InputThe Responder Chain Is Made Up of Responder Objects
+
+前几天在看响应者链条的时候，看到 UIResponder 有两个很有用的属性，但是自己不熟悉，就是 inputView 和 inputAccessoryView。原来自己练手的时候，需要这样的功能，但是自己不知道这两个属性，导致自己花费了">
+<meta name="twitter:image" content="http://oatw5vnlr.bkt.clouddn.com/inputAccessory_Example.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/08/Responder-inputView/"/>
+
+
+  <title> UIResponder 拾遗：inputView 和 inputAccessoryView | lzh's blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">lzh's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UIResponder 拾遗：inputView 和 inputAccessoryView
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-08T21:34:32+08:00" content="2016-12-08">
+              2016-12-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/08/Responder-inputView/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/Responder-inputView/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/InputViews/InputViews.html#//apple_ref/doc/uid/TP40009542-CH12-SW5" target="_blank" rel="external">Custom Views for Data Input</a><br><a href="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html#//apple_ref/doc/uid/TP40009541-CH4-SW1" target="_blank" rel="external">The Responder Chain Is Made Up of Responder Objects</a></p>
+</blockquote>
+<p>前几天在看响应者链条的时候，看到 <code>UIResponder</code> 有两个很有用的属性，但是自己不熟悉，就是 <code>inputView</code> 和 <code>inputAccessoryView</code>。原来自己练手的时候，需要这样的功能，但是自己不知道这两个属性，导致自己花费了很多时间。所以，就写下这篇，算是对不知道的知识的补充。</p>
+<a id="more"></a>
+<h2 id="UITextField-的-inputView-和-inputAccessoryView"><a href="#UITextField-的-inputView-和-inputAccessoryView" class="headerlink" title="UITextField 的 inputView 和 inputAccessoryView"></a>UITextField 的 inputView 和 inputAccessoryView</h2><h3 id="UITextField-的-inputView"><a href="#UITextField-的-inputView" class="headerlink" title="UITextField 的 inputView"></a>UITextField 的 inputView</h3><p>默认情况下，当 <code>UITextField</code> 对象成为第一响应者的时候，系统会唤出系统键盘来接收用户的输入。</p>
+<p>但是在有些时候，我们不希望唤出系统键盘，而是我们自定义的 view 来接收用户的输入，在这种情况下，<code>inputView</code> 就派上用场了。<code>inputView</code> 的作用就是让开发者提供自定义的 view 来获取用户的输入，当 <code>UITextField</code> 对象成为第一响应者的时候，系统会尝试唤出 <code>inputView</code>，如果 <code>inputView</code> 存在，就唤出开发者提供的 <code>inputView</code>；如果 <code>inputView</code> 不存在，也就是说这个属性的值是 nil（<code>inputView</code> 默认就是 nil），系统会唤出系统键盘。</p>
+<p>现在假设当我们点击 <code>UITextField</code> 之后，显示出来的是一个 <code>UIDatePicker</code>。大概的实现代码：</p>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *textField;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIDatePicker</span> *datePicker;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="built_in">UIDatePicker</span> *)datePicker &#123;</div><div class="line">    <span class="keyword">if</span> (!_datePicker) &#123;</div><div class="line">        _datePicker = [[<span class="built_in">UIDatePicker</span> alloc] init];</div><div class="line">        _datePicker.datePickerMode = <span class="built_in">UIDatePickerModeCountDownTimer</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _datePicker;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    <span class="keyword">self</span>.textField.inputView = <span class="keyword">self</span>.datePicker;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h3 id="UITextField-的-inputAccessoryView"><a href="#UITextField-的-inputAccessoryView" class="headerlink" title="UITextField 的 inputAccessoryView"></a>UITextField 的 inputAccessoryView</h3><p>接下来说一下 <code>inputAccessoryView</code> 的作用，这个属性就是在 <code>inputView</code> 或者系统键盘上添加一个辅助的 view，例如下图高亮部分（图片截取自奇点）：</p>
+<p><div align="center"><br><img src="http://oatw5vnlr.bkt.clouddn.com/inputAccessory_Example.png" width="200" alt="inputAccessory Example"></div></p>
+<div align="left">
+
+<p>我们自己来添加一个 <code>inputAccessoryView</code>，大概的代码实现：</p>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> () </span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *textField;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIToolbar</span> *toolBar;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="built_in">UIToolbar</span> *)toolBar &#123;</div><div class="line">    <span class="keyword">if</span> (!_toolBar) &#123;</div><div class="line">        _toolBar = [[<span class="built_in">UIToolbar</span> alloc] init];</div><div class="line">        _toolBar.bounds = (<span class="built_in">CGRect</span>)&#123;<span class="built_in">CGPointZero</span>, <span class="keyword">self</span>.view.bounds.size.width, <span class="number">49</span>&#125;;</div><div class="line">        <span class="built_in">UIBarButtonItem</span> *spaceItem = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithBarButtonSystemItem:<span class="built_in">UIBarButtonSystemItemFlexibleSpace</span></div><div class="line">                                                                                   target:<span class="literal">nil</span></div><div class="line">                                                                                   action:<span class="literal">NULL</span>];</div><div class="line">        <span class="built_in">UIBarButtonItem</span> *rightItem = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithBarButtonSystemItem:<span class="built_in">UIBarButtonSystemItemDone</span></div><div class="line">                                                                                   target:<span class="keyword">self</span></div><div class="line">                                                                                   action:<span class="keyword">@selector</span>(done)];</div><div class="line">        _toolBar.items = @[spaceItem, rightItem];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _toolBar;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    <span class="keyword">self</span>.textField.inputAccessoryView = <span class="keyword">self</span>.toolBar;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)done &#123;</div><div class="line">    <span class="built_in">NSString</span> *text = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%.2lf s"</span>, <span class="keyword">self</span>.datePicker.countDownDuration];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.textField.isFirstResponder) &#123;</div><div class="line">        <span class="keyword">self</span>.textField.text = text;</div><div class="line">        [<span class="keyword">self</span>.textField resignFirstResponder];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p><code>UITextView</code> 的自定义 <code>inputView</code>／<code>inputAccessoryView</code> 与 <code>UITextField</code> 类似。</p>
+<h2 id="UIReponder-的-inputView-和-inputAccessoryView"><a href="#UIReponder-的-inputView-和-inputAccessoryView" class="headerlink" title="UIReponder 的 inputView 和 inputAccessoryView"></a>UIReponder 的 inputView 和 inputAccessoryView</h2><h3 id="UIReponder-的-inputView"><a href="#UIReponder-的-inputView" class="headerlink" title="UIReponder 的 inputView"></a>UIReponder 的 inputView</h3><p>我们看一下  <code>inputView</code> 和 <code>inputAccessoryView</code> 在 <code>UIResponder</code> 的声明：</p>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Called and presented when object becomes first responder.  Goes up the responder chain.</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nullable</span>, <span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">strong</span>) __kindof <span class="built_in">UIView</span> *inputView <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">3</span>_2);</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nullable</span>, <span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">strong</span>) __kindof <span class="built_in">UIView</span> *inputAccessoryView <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">3</span>_2);</div></pre></td></tr></table></figure>
+<p>这里我们看到 <code>UIResponder</code> 将这两个属性声明为 <code>readonly</code>，所以当我们使用例如：<code>UIButton</code> 的时候，我们就需要继承这些类，然后重新将这两个属性声明称 <code>readwrite</code>。</p>
+<p>假设我们点击一个 button 时，要显示一个 <code>UIDatePicker</code>，大概的代码实现：</p>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">TSButton</span> : <span class="title">UIButton</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>, <span class="keyword">readwrite</span>, <span class="keyword">nullable</span>) <span class="built_in">UIView</span> *inputView;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>, <span class="keyword">readwrite</span>, <span class="keyword">nullable</span>) <span class="built_in">UIView</span> *inputAccessoryView;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">TSButton</span></span></div><div class="line"><span class="comment">// 1</span></div><div class="line">- (<span class="built_in">BOOL</span>)canBecomeFirstResponder &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 2</span></div><div class="line">- (<span class="built_in">BOOL</span>)canResignFirstResponder &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">weak</span>) <span class="keyword">IBOutlet</span> TSButton *showDatePickerButton;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">UIDatePicker</span> *datePicker;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="built_in">UIDatePicker</span> *)datePicker &#123;</div><div class="line">    <span class="keyword">if</span> (!_datePicker) &#123;</div><div class="line">        _datePicker = [[<span class="built_in">UIDatePicker</span> alloc] init];</div><div class="line">        _datePicker.datePickerMode = <span class="built_in">UIDatePickerModeCountDownTimer</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> _datePicker;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    <span class="keyword">self</span>.showDatePickerButton.inputView = <span class="keyword">self</span>.datePicker;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)showDatePicker &#123;</div><div class="line">     <span class="comment">// 3</span></div><div class="line">    [<span class="keyword">self</span>.showDatePickerButton becomeFirstResponder];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>我们在这里要注意有注释的地方，除却 <code>UITextField</code> 和 <code>UITextView</code> 之外，因为这两个控件会自动成为第一响应者，其他的 <code>UIResponder</code> 子类想要成为第一响应者有两步要做：</p>
+<ol>
+<li>覆写 <code>canBecomeFirstResponder</code> 并返回 YES；</li>
+<li>主动调用 <code>becomeFirstResponder</code> 方法。</li>
+</ol>
+<p>因为只有成为第一响应者，系统才会去唤出 <code>inputView</code> 与 <code>inputAccessoryView</code>，所以我们需要主动调用 <code>becomeFirstResponder</code> 方法。</p>
+<h2 id="reloadInputViews-用法"><a href="#reloadInputViews-用法" class="headerlink" title="reloadInputViews 用法"></a>reloadInputViews 用法</h2><p>当对象是第一响应者时，调用这个方法来刷新 <code>inputView</code> 和 <code>inputAccessoryView</code>。这些 view 会立马被替换，没有动画。如果对象不是第一响应者，则这个方法就没有任何效果。</p>
+<h2 id="与-inputView-和-inputAccessoryView-相关的通知"><a href="#与-inputView-和-inputAccessoryView-相关的通知" class="headerlink" title="与 inputView 和 inputAccessoryView 相关的通知"></a>与 inputView 和 inputAccessoryView 相关的通知</h2><p>我们又是会监听与系统键盘相关的通知，以便在系统键盘出现的时候，来调整我们的 UI 界面。同样，自定义的 <code>inputView</code> 出现或者消失时也会触发键盘相关的通知。我们同样可以监听  <code>UIKeyboardWillShowNotification</code>, <code>UIKeyboardDidShowNotification</code>, <code>UIKeyboardWillHideNotification</code>, 和 <code>UIKeyboardDidHideNotification</code> 通知来调整 UI 视图。这里需要注意的是，当有 <code>inputAccessoryView</code> 时，通知的 <code>userInfo</code> 中的高度数据，是 <code>inputView</code> 的高度加上 <code>inputAccessoryView</code> 的高度。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>在 <code>UIResponder</code> 还有 <code>inputViewController</code> 和 <code>inputAccessoryViewController</code> 属性，这两个属性跟自定义键盘有关。下面是它们在 <code>UIResponder</code> 中的声明：</p>
+<figure class="highlight mm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// For viewController equivalents of -inputView and -inputAccessoryView</span></div><div class="line"><span class="comment">// Called and presented when object becomes first responder.  Goes up the responder chain.</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nullable</span>, <span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">strong</span>) <span class="built_in">UIInputViewController</span> *inputViewController <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">8</span>_0);</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nullable</span>, <span class="keyword">nonatomic</span>, <span class="keyword">readonly</span>, <span class="keyword">strong</span>) <span class="built_in">UIInputViewController</span> *inputAccessoryViewController <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">8</span>_0);</div></pre></td></tr></table></figure>
+</div>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/06/Disk-Drill/" rel="next" title="利用 Disk Drill 导出 iOS 沙盒文件">
+                <i class="fa fa-chevron-left"></i> 利用 Disk Drill 导出 iOS 沙盒文件
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/08/Responder-inputView/"
+           data-title="UIResponder 拾遗：inputView 和 inputAccessoryView" data-url="http://yoursite.com/2016/12/08/Responder-inputView/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/IMG_0036.jpg"
+               alt="yys_LZH" />
+          <p class="site-author-name" itemprop="name">yys_LZH</p>
+          <p class="site-description motion-element" itemprop="description">Just Keep Moving!!!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/LZhenHong" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/yys_lzh" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:levine5blue@gmail.com" target="_blank" title="Mail">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  Mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextField-的-inputView-和-inputAccessoryView"><span class="nav-number">1.</span> <span class="nav-text">UITextField 的 inputView 和 inputAccessoryView</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UITextField-的-inputView"><span class="nav-number">1.1.</span> <span class="nav-text">UITextField 的 inputView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UITextField-的-inputAccessoryView"><span class="nav-number">1.2.</span> <span class="nav-text">UITextField 的 inputAccessoryView</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIReponder-的-inputView-和-inputAccessoryView"><span class="nav-number">2.</span> <span class="nav-text">UIReponder 的 inputView 和 inputAccessoryView</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIReponder-的-inputView"><span class="nav-number">2.1.</span> <span class="nav-text">UIReponder 的 inputView</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reloadInputViews-用法"><span class="nav-number">3.</span> <span class="nav-text">reloadInputViews 用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与-inputView-和-inputAccessoryView-相关的通知"><span class="nav-number">4.</span> <span class="nav-text">与 inputView 和 inputAccessoryView 相关的通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LZhenHong</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"lzhyys"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

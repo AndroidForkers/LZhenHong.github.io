@@ -236,6 +236,112 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/08/Responder-inputView/" itemprop="url">
+                  UIResponder 拾遗：inputView 和 inputAccessoryView
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-08T21:34:32+08:00" content="2016-12-08">
+              2016-12-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/08/Responder-inputView/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/08/Responder-inputView/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/InputViews/InputViews.html#//apple_ref/doc/uid/TP40009542-CH12-SW5">Custom Views for Data Input</a><br><a href="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/event_delivery_responder_chain/event_delivery_responder_chain.html#//apple_ref/doc/uid/TP40009541-CH4-SW1">The Responder Chain Is Made Up of Responder Objects</a></p>
+</blockquote>
+<p>前几天在看响应者链条的时候，看到 <code>UIResponder</code> 有两个很有用的属性，但是自己不熟悉，就是 <code>inputView</code> 和 <code>inputAccessoryView</code>。原来自己练手的时候，需要这样的功能，但是自己不知道这两个属性，导致自己花费了很多时间。所以，就写下这篇，算是对不知道的知识的补充。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/08/Responder-inputView/" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/06/Disk-Drill/" itemprop="url">
                   利用 Disk Drill 导出 iOS 沙盒文件
                 </a>
@@ -1175,113 +1281,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/08/enumerateObjectsUsingBlock/" itemprop="url">
-                  关于 enumerateObjectsUsingBlock 的小知识点
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T11:40:01+08:00" content="2016-09-08">
-              2016-09-08
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/08/enumerateObjectsUsingBlock/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/08/enumerateObjectsUsingBlock/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">What is the BOOL *stop argument for enumerateObjectsUsingBlock: used for?</a><br><a href="http://blog.sunnyxx.com/2014/04/30/ios_iterator/">iOS 中集合遍历方法的比较和技巧</a></p>
-</blockquote>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在 StackOverflow 上看到 <strong><a href="http://stackoverflow.com/questions/12357904/what-is-the-bool-stop-argument-for-enumerateobjectsusingblock-used-for">这篇讨论</a></strong> 的时候，让我发现了自己的盲区，所以写下这篇文章记录一下。</p>
-<p>有一次在项目中使用的 <code>enumerateObjectsUsingBlock</code> 遍历数组的时候，使用了 return，当时没有多想，在 code review 的时候被同事指出，当时觉得不妥就改掉了，今天突然想起就去搜了一下。项目中好像没有直接跳出方法，而是执行到循环外面（这里的需求是当遍历到最后一个直接跳出循环，return 在 <code>enumerateObjectsUsingBlock</code> 相当于 continue，所以项目中会造成直接跳出循环）。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/08/enumerateObjectsUsingBlock/" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1327,7 +1326,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
